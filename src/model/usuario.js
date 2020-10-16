@@ -3,6 +3,12 @@ var db = require("../dataBase/dbController");
 
 // 1: The model schema.
 var modelDefinition = {
+	id:{
+		type:Sequelize.INTEGER,
+		autoIncrement:true,
+		primaryKey:true,
+		allowNull:false
+	},
 	usuario: {
 		type: Sequelize.STRING,
 		unique: true,
@@ -13,7 +19,7 @@ var modelDefinition = {
 		allowNull: false,
    },
    rol: {
-       type : Sequelize.NUMBER,
+       type : Sequelize.BIGINT,
        allowNull: false
    }
 
@@ -27,6 +33,10 @@ var modelOptions = {
 	hooks: {
 		beforeValidate: hashPassword,
 	},
+	timestamps :false,
+	modelName:'usuario',
+	freezeTableName:true
+	
 };
 
 // 3: Define the User model.
