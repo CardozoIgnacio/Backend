@@ -8,5 +8,3 @@ var user = {}
 user.findUsuario = findUsuario
 
 module.exports= user
-
-
