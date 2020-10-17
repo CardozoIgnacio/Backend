@@ -2,7 +2,7 @@ var Sequelize = require("sequelize");
 var db = require("../dataBase/dbController");
 var bycrypt = require("bcrypt");
 // 1: The model schema.
-var modelDefinition = {
+var definicionModelo= {
 	id: {
 		type: Sequelize.INTEGER,
 		autoIncrement: true,
@@ -37,7 +37,7 @@ var modelDefinition = {
 };
 
 // 2: The model options.
-var modelOptions = {
+var opcionesModelo = {
 	instanceMethods: {
 		comparePasswords: comparePasswords,
 	},
@@ -51,7 +51,7 @@ var modelOptions = {
 };
 
 // 3: Define the User model.
-var UsuarioModel = db.define("usuario", modelDefinition, modelOptions);
+var UsuarioModel = db.define("usuario",definicionModelo ,opcionesModelo);
 
 async function comparePasswords(password,id,callback ) {
 	try {
@@ -76,7 +76,6 @@ async function hashPassword(usuario) {
 		throw "/src/model/usuario.js -- No se pudo encryptar la contraseña" + err;
 	}
 }
-var user = {} 
-user.findUsuario = findUsuario
 
-module.exports= user
+
+module.exports=UsuarioModel
