@@ -76,5 +76,7 @@ async function hashPassword(usuario) {
 		throw "/src/model/usuario.js -- No se pudo encryptar la contraseña" + err;
 	}
 }
+var user = {} 
+user.findUsuario = findUsuario
 
-module.exports = UsuarioModel;
+module.exports= user
