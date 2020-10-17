@@ -53,11 +53,16 @@ var modelOptions = {
 // 3: Define the User model.
 var UsuarioModel = db.define("usuario", modelDefinition, modelOptions);
 
-function comparePasswords(usuario, callback) {
+async function comparePasswords(password,id,callback ) {
 	try {
-		
+		var user = await this.findOne({where:{id:id}})
+		if(user){
+			var {dataValues}=user
+			const esValido = await bycrypt.compare(password,dataValues.password)
+			callback(esValido)
+		}
 	} catch (error) {
-		
+		callback(undefined,error)
 	}
 }
 
