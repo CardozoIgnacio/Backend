@@ -6,6 +6,7 @@ var router= express.Router();
 router.get('/',controladorNoticia.listarNoticias_get)
 router.get('/crearNoticia',controladorNoticia.crearNoticia_get)
 router.get('/:idNoticia/actualizar',controladorNoticia.actualizarNoticia_get)
+router.get('/mostrar/:idNoticia',controladorNoticia.encontrarNoticia_get)
 // POST NOTICIAS
 router.post('/crearNoticia',controladorNoticia.crearNoticia_post)
 router.post('/:idNoticia/actualizar',controladorNoticia.actualizarNoticia_post)

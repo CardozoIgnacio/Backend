@@ -21,7 +21,6 @@ exports.crearNoticia_post = async function (req, res) {
 
 	res.send({ msj: "La noticia fue creada exitosamente" });
 };
-
 exports.actualizarNoticia_get = async function (req, res) {
 	//TODO: Renderizar vista de actualizacion de noticias
 	var idNoticia = req.params.idNoticia;
@@ -46,3 +45,16 @@ exports.actualizarNoticia_post = async function (req, res) {
 		console.log("El error es",error)
 	}
 };
+exports.encontrarNoticia_get = async function(req,res){
+	try {
+		var idNoticia= req.params.idNoticia
+		var noticia =await Noticia.findOne({where:{idNoticia:idNoticia}})
+		
+		console.log(noticia)
+		//TODO: Renderizar vista de la noticia
+		res.send({msj:"Noticia encontrada"+noticia})
+	} catch (error) {
+		//TODO:Mensaje de error de controlador noticias
+		console.log("El erros es",error)
+}
+}
