@@ -27,8 +27,8 @@ var definicionModelo = {
 		allowNull: false,
 	},
 	visibilidad: {
-		type: Sequelize.BOOLEAN,
-		default: false,
+		type : Sequelize.BOOLEAN,
+		allowNull:false
 	},
 };
 
@@ -40,6 +40,6 @@ var opcionesModelo ={
     camelCase:true
 }
 // 3: Definicion del modeelo noticias
-var ModeloNoticias = db.define("notica",definicionModelo,opcionesModelo)
+var ModeloNoticias = db.define("noticia",definicionModelo,opcionesModelo)
 
 module.exports = ModeloNoticias
