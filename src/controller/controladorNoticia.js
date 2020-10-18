@@ -13,7 +13,7 @@ exports.crearNoticia_post = async function (req, res) {
 	var nuevaNoticia=await Noticia.create({
 		tituloNoticia: "Titulo1",
 		cuerpoNoticia: "Este es el cuerpo de la noticia numero1",
-		//visiblidad: true,
+		visibilidad: true,
     });
     
     res.send({msj:"La noticia fue creada exitosamente"})

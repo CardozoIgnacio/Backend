@@ -27,7 +27,7 @@ var definicionModelo = {
 		allowNull: false,
 	},
 	visibilidad: {
-		type : Sequelize.BOOLEAN,
+		type: Sequelize.BOOLEAN,
 		allowNull:false
 	},
 };
