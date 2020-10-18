@@ -58,3 +58,15 @@ exports.encontrarNoticia_get = async function(req,res){
 		console.log("El erros es",error)
 }
 }
+exports.destruirNoticia_post = async function(req,res){
+	try {
+		//TODO: Verificar que el usuario tenga permisos para destruir la noticia
+		var idNoticia= req.params.idNoticia
+		await Noticia.destroy({where:{idNoticia:idNoticia}})
+		//TODO: REnderizar vista de destruccion exitoso o redirigir a la vista adecuada
+		res.send({msj:"Noticia destruida exitosamente"})
+	} catch (error) {
+		//TODO: Manejo de errores del controlador
+		console.log("El error es"+error)
+	}
+}

@@ -10,4 +10,5 @@ router.get('/mostrar/:idNoticia',controladorNoticia.encontrarNoticia_get)
 // POST NOTICIAS
 router.post('/crearNoticia',controladorNoticia.crearNoticia_post)
 router.post('/:idNoticia/actualizar',controladorNoticia.actualizarNoticia_post)
+router.post('/:idNoticia/destruir',controladorNoticia.destruirNoticia_post)
 module.exports =router
