@@ -1,26 +1,48 @@
 var ModeloCarrera = require("../model/carrera")
 
-exports.listarCarreras_get = function(req, res) { 
+exports.listarCarreras_get = async function(req, res) { 
     //TODO: Renderizado de listar carreras
-    res.send({ msj: "Renderizar página de filtrado de carreras"});
+    try { 
+        await ModeloCarrera.findAll({})
+            .then(carreras => {
+                res.render('carreras/listarCarreras', { carreras: carreras });
+            })
+            .catch(error => console.log(error));
+    }
+    catch(error) { 
+        console.log("No se lograron listar las carreras: ", error)
+    }
 }
 
 exports.crearCarrera_get = function(req, res) { 
-    //TODO: Renderizado de crear Carrera
-    res.send({msj: "Renderizar página para crear una carrera"});
+    res.render('carreras/crear');
 }
 
 exports.actualizarCarrera_get = function(req, res) { 
-    //TODO: Renderizado de actualizar Carrera
-    res.send({msj: "Renderizar página para actualizar Carrera"});
+    //TODO: Enviar los datos actuales de la carrera a la vista, para hacer más simple su edición.
+    res.render('carreras/actualizar', { id: req.params.id });
 }
 
 exports.encontrarCarrera_get = async function(req, res) {
     try { 
         let idCarrera = req.params.id; 
-        await ModeloCarrera.findAll({ where: {id: idCarrera} }); 
-        //TODO: Renderizar vista de la carrera encontrada
-        res.send({ msj: "Carrera encontrada" });
+        await ModeloCarrera.findAll({ where: {id: idCarrera} })
+            .then(respuesta => { 
+                let datos = { 
+                    id: respuesta[0].get('id'),
+                    nombre: respuesta[0].get('nombre'),
+                    nombreAbreviado: respuesta[0].get('nombreAbreviado'),
+                    titulo: respuesta[0].get('titulo'),
+                    resolucion: respuesta[0].get('resolucion'),
+                    duracion: respuesta[0].get('duracion'),
+                    horas: respuesta[0].get('horas'),
+                    tipo: respuesta[0].get('tipo'),
+                    modalidad: respuesta[0].get('modalidad'),
+                    validada: respuesta[0].get('validada')
+                }
+                res.render('carreras/carrera', { datos: datos });
+            })
+            .catch(error => console.log(error));
     }
     catch (error) { 
         //TODO: Mensaje de error Controlador Carreras
@@ -31,38 +53,25 @@ exports.encontrarCarrera_get = async function(req, res) {
 exports.crearCarrera_post = async function(req, res) {
     let carrera = {}
     //TODO: verificar autenticación y rol correspondiente
-    //TODO: descomentar recuperación de datos del req
     try { 
-        // carrera.nombre = req.body.nombre; 
-        // carrera.nombreAbreviado = req.body.nombreAbreviado;
-        // carrera.titulo = req.body.titulo;
-        // carrera.resolucion = req.body.resolucion;
-        // carrera.duracion = req.body.duracion;
-        // carrera.horas = req.body.horas;
-        // carrera.tipo = req.body.tipo;
-        // carrera.modalidad = req.body.modalidad;
-        // carrera.validada = req.body.validada;
+        carrera.nombre = req.body.nombre; 
+        carrera.nombreAbreviado = req.body.nombreAbreviado;
+        carrera.titulo = req.body.titulo;
+        carrera.resolucion = req.body.resolucion;
+        carrera.duracion = req.body.duracion;
+        carrera.horas = req.body.horas;
+        carrera.tipo = req.body.tipo;
+        carrera.modalidad = req.body.modalidad;
+        carrera.validada = true;
 
-        // await ModeloCarrera.create(carrera)
-        //     .then(resultado => {
-        //         console.log("Carrera creada exitosamente");
-        //         console.log(resultado);
-        //     });
-        // }
-
-        await ModeloCarrera.create({
-            nombre: "Técnicatura Superior en Seguridad e Higiene",
-            nombreAbreviado: "Seguridad e Higiene",
-            titulo: "Técnico en Seguridad e Higiene",
-            resolucion: "5555/55",
-            duracion: 3,
-            horas: 1600,
-            tipo: "Carrera Vigente",
-            modalidad: "Presencial",
-            validada: true 
-        }).then(resultado => { 
-            console.log("Se ha creado la carrera con éxito");
-        })
+        await ModeloCarrera.create(carrera)
+             .then(resultado => {
+                 res.redirect('/carreras/');
+             })
+             .catch(error => { 
+                res.send("Ocurrió un error")
+                console.log(error);
+            });
     }
     catch(error) {
         //TODO: perfeccionar mensaje de error controladorCarrera
@@ -76,19 +85,30 @@ exports.actualizarCarrera_post = async function(req, res) {
         let carrera = await ModeloCarrera.findByPk(idCarrera);
 
         if(!carrera) { 
-             throw("No se encontró la carrera");
+            //TODO: Crear plantilla para cuando sucede un error.
+             res.send("No se encontró la carrera");
+             console.log("No se encontró una carrera buscada");
         } else { 
-            //TODO: completar datos recibidos de 'req' 
-             let carreraActualizada = { 
-                 nombre: "Tecnicatura Superior en Seguridad e Higiene "
+             let carreraActualizada = {  
+                nombre: req.body.nombre, 
+                nombreAbreviado: req.body.nombreAbreviado,
+                titulo: req.body.titulo,
+                resolucion: req.body.resolucion,
+                duracion: req.body.duracion,
+                horas: req.body.horas,
+                tipo: req.body.tipo,
+                modalidad: req.body.modalidad,
+                validada: true
             }
 
             let resultado = await ModeloCarrera.update(carreraActualizada, { where: {id : idCarrera} });
             
-            if(resultado) { 
-                res.send("Carrera actualizada con éxito");
+            if(resultado) {
+                //TODO: Se debe agregar un mensaje para que el admin. sepa que se modificó con éxito 
+                res.redirect('/carreras');
             } else {
-                throw("No se pudo actualizar la carrera");
+                res.send("No se pudo actualizar la carrera");
+                console.log("Ocurrió un error al actualizar una carrera");
             }   
         }
 
@@ -104,13 +124,15 @@ exports.destruirCarrera_post = async function(req, res) {
         let carrera = await ModeloCarrera.findByPk(idCarrera);
 
         if(!carrera) { 
-            throw("No existe la carrera");
+            res.send("Ocurrió un error");
+            console.log("Se intentó borrar una carrera que no existe");
         } else { 
             await carrera.destroy();
-            console.log("La carrera fue eliminada con éxito");
+            res.redirect('/carreras/');
         }
     }
     catch(error) {
-        throw("Ocurrió un error y no pudo eliminarse la carrera: " + error);
+        res.send("Ocurrió un error y no pudo eliminarse la carrera");
+        console.log(error);
     }
 }
