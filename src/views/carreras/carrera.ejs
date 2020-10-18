@@ -1,0 +1,66 @@
+<%- include('../archivos/cabecera') %> 
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h4><b>Identificador carrera</b></h4>
+                <%= datos.id %>
+                <br>
+                <h4><b>Nombre carrera</b></h4>
+                <%= datos.nombre %>
+                <br>
+                <h4><b>Nombre abreviado</b></h4>
+                <%= datos.nombreAbreviado %>
+                <br>
+                <h4><b>Titulo</b></h4>
+                <%= datos.titulo %>
+                <br>
+                <h4><b>Resolución</b></h4>
+                <%= datos.resolucion %>
+            </div>
+            <div class="col-md-6">
+                <h4><b>Duración</b></h4>
+                <%= datos.duracion %> años
+                <br>
+                <h4><b>Horas</b></h4>
+                <%= datos.horas %> hs.
+                <br>
+                <h4><b>Tipo</b></h4>
+                <%= datos.tipo %>
+                <br>
+                <h4><b>Modalidad</b></h4>
+                <%= datos.modalidad %>
+                <br>
+                <h4><b>Validada</b></h4>
+                <% if (datos.validada) { %>
+                    <p>Sí</p>
+                <% } else { %>
+                    <p>No</p>
+                <% } %>
+            </div>
+        </div>
+        <br>
+        <br>
+        <a href="/carreras/<%= datos.id %>/actualizar" class="btn btn-lg btn-info">Modificar</a>
+        <form action="/carreras/<%= datos.id %>/destruir" method="POST"><button type="submit" class="btn btn-lg btn-danger">Borrar</a></form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script> 
+  <!-- <script src="js/scrolling-nav.js"></script>  -->
+
+</body>
+
+</html>

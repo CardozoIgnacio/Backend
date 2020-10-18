@@ -1,0 +1,52 @@
+<%- include('../archivos/cabecera') %> 
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table>
+                    <tr>
+                        <th><center>Carrera</center></th>
+                        <th><center>Acción</center></th>
+                    </tr> 
+                    <% carreras.forEach(carrera => { %>
+                    <tr>
+                        <td><%= carrera.nombre %></td>
+                        <td>
+                            <a href='/carreras/mostrar/<%= carrera.id %>' class="btn btn-sm btn-info">Ver</a>
+                            <a href="/carreras/<%= carrera.id %>/actualizar" class="btn btn-sm btn-warning">Actualizar</a>
+                            <form action="/carreras/<%= carrera.id %>/destruir" method="POST"><button type="submit" class="btn btn-sm btn-danger">Borrar</a></form>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </table> 
+                <br>
+                <a href="/carreras/crearCarrera" class="btn btn-primary">Insertar nueva carrera</a>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script> 
+  <!-- <script src="js/scrolling-nav.js"></script>  -->
+
+</body>
+
+</html>
