@@ -6,7 +6,10 @@ exports.listarNoticias_get = async function (req, res) {
     //TODO:Renderizar vista correpondiente al listado de noticiasa
 	res.send({ msj: "Las noticias fueron traidas exitosamente" });
 };
-
+exports.crearNoticia_get = async  function(req,res){
+	//TODO: Renderizar crear Noticia
+	res.send({msj:"Renderizar pagina para crear una noticia"})
+}
 exports.crearNoticia_post = async function (req, res) {
     //TODO: Verificar permisos a la hora de crear una noticia
     //TODO: Recuperar informacion del body respecto a los usuarios
@@ -18,3 +21,4 @@ exports.crearNoticia_post = async function (req, res) {
     
     res.send({msj:"La noticia fue creada exitosamente"})
 };
+
