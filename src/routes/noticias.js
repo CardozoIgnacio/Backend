@@ -5,8 +5,8 @@ var router= express.Router();
 // GET NOTICIAS
 router.get('/',controladorNoticia.listarNoticias_get)
 router.get('/crearNoticia',controladorNoticia.crearNoticia_get)
-
+router.get('/:idNoticia/actualizar',controladorNoticia.actualizarNoticia_get)
 // POST NOTICIAS
 router.post('/crearNoticia',controladorNoticia.crearNoticia_post)
-
+router.post('/:idNoticia/actualizar',controladorNoticia.actualizarNoticia_post)
 module.exports =router
