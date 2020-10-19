@@ -27,7 +27,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port,()=>{
-  connection.sync({force:false}).then(()=>{
+  connection.sync({force:true}).then(()=>{
    console.log("Coneccion establecida correctamente")
   })
 });

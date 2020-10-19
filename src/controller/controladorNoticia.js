@@ -1,4 +1,4 @@
-var Noticia = require("../model/noticia");
+var {Noticia} = require('../dataBase/dbController')
 
 exports.listarNoticias_get = async function (req, res) {
 	//TODO: Agregar filtro de noticias
