@@ -1,5 +1,5 @@
 // var Usuario = require("../model/usuario");
-var { Usuario }=require('../dataBase/dbController')
+var { Usuario }=require('../model/index')
 
 exports.listarUsuarios_get = function (req, res) {
 	//TODO: Renderizado de listar Usuarios

@@ -1,5 +1,5 @@
 // var ModeloCarrera = require("../model/carrera")
-var {Carrera}=require('../dataBase/dbController')
+var {Carrera}=require('../model/index')
 
 exports.listarCarreras_get = async function(req, res) { 
     //TODO: Renderizado de listar carreras
@@ -42,6 +42,7 @@ exports.encontrarCarrera_get = async function(req, res) {
 exports.crearCarrera_post = async function(req, res) {
     let carrera = {}
     //TODO: verificar autenticación y rol correspondiente
+    //TODO: Verficiar correctitud de los datos ingresados 
     try { 
         carrera.nombre = req.body.nombre; 
         carrera.nombreAbreviado = req.body.nombreAbreviado;
@@ -117,7 +118,7 @@ exports.destruirCarrera_post = async function(req, res) {
             console.log("Se intentó borrar una carrera que no existe");
         } else { 
             await carrera.destroy();
-            res.redirect('/carreras/');
+            res.redirect('/carreras/'); 
         }
     }
     catch(error) {
