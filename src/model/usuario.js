@@ -1,71 +1,39 @@
-var Sequelize = require("sequelize");
-var db = require("../dataBase/dbController");
+"use strict";
+const { Model } = require("sequelize");
 var bycrypt = require("bcrypt");
-// 1: The model schema.
-var definicionModelo= {
-	id: {
-		type: Sequelize.INTEGER,
-		autoIncrement: true,
-		primaryKey: true,
-		allowNull: false,
-	},
-	usuario: {
-		type: Sequelize.STRING,
-		unique: true,
-		allowNull: false,
-	},
-	nombre :{
-		type:Sequelize.STRING,
-		allowNull:false
-	},
-	apellido :{
-		type:Sequelize.STRING,
-		allowNull:false
-	},
-	password: {
-		type: Sequelize.STRING,
-		allowNull: false,
-	},
-	rol: {
-		type: Sequelize.BIGINT,
-		allowNull: false,
-	},
-	nombreAbreviado:{
-		type:Sequelize.STRING,
-		allowNull:true
-	}
-};
 
-// 2: The model options.
-var opcionesModelo = {
-	instanceMethods: {
-		comparePasswords: comparePasswords,
-	},
-	hooks: {
-		beforeValidate: hashPassword,
-	},
-	timestamps: false,
-	modelName: "usuario",
-	freezeTableName: true,
-	underscore:true
-};
-
-// 3: Define the User model.
-var UsuarioModel = db.define("usuario",definicionModelo ,opcionesModelo);
-
-async function comparePasswords(password,id,callback ) {
-	try {
-		var user = await this.findOne({where:{id:id}})
-		if(user){
-			var {dataValues}=user
-			const esValido = await bycrypt.compare(password,dataValues.password)
-			callback(esValido)
+module.exports = (sequelize, DataTypes) => {
+	class Usuario extends Model {
+		/**
+		 * Helper method for defining associations.
+		 * This method is not a part of Sequelize lifecycle.
+		 * The `models/index` file will call this method automatically.
+		 */
+		static associate(models) {
+			// define association here
 		}
-	} catch (error) {
-		callback(undefined,error)
 	}
-}
+	Usuario.init(
+		{
+			usuario: DataTypes.STRING,
+			nombre: DataTypes.STRING,
+			apellido: DataTypes.STRING,
+			password: DataTypes.STRING,
+			rol: DataTypes.INTEGER,
+		},
+		{
+			sequelize,
+			modelName: "Usuario",
+			freezeTableName: true,
+			timestamps: false,
+			hooks: {
+				beforeValidate: hashPassword,
+			},
+		}
+	);
 
+	return Usuario;
+};
 async function hashPassword(usuario) {
 	try {
 		usuario.password = await bycrypt.hash(
@@ -76,6 +44,3 @@ async function hashPassword(usuario) {
 		throw "/src/model/usuario.js -- No se pudo encryptar la contraseña" + err;
 	}
 }
-
-
-module.exports=UsuarioModel

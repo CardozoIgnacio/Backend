@@ -7,6 +7,7 @@ require('dotenv').config()
 var app = require('../src/app');
 var debug = require('debug')('backend:server');
 var http = require('http');
+var {connection} = require('../src/dataBase/dbController')
 
 /**
  * Get port from environment and store in Express.
@@ -25,7 +26,11 @@ var server = http.createServer(app);
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
+server.listen(port,()=>{
+  connection.sync({force:false}).then(()=>{
+   console.log("Coneccion establecida correctamente")
+  })
+});
 server.on('error', onError);
 server.on('listening', onListening);
 
