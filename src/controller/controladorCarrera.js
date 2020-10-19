@@ -1,4 +1,5 @@
-var ModeloCarrera = require("../model/carrera")
+// var ModeloCarrera = require("../model/carrera")
+var {Carrera}=require('../dataBase/dbController')
 
 exports.listarCarreras_get = function(req, res) { 
     //TODO: Renderizado de listar carreras
@@ -18,7 +19,7 @@ exports.actualizarCarrera_get = function(req, res) {
 exports.encontrarCarrera_get = async function(req, res) {
     try { 
         let idCarrera = req.params.id; 
-        await ModeloCarrera.findAll({ where: {id: idCarrera} }); 
+        await Carrera.findAll({ where: {id: idCarrera} }); 
         //TODO: Renderizar vista de la carrera encontrada
         res.send({ msj: "Carrera encontrada" });
     }
@@ -50,7 +51,7 @@ exports.crearCarrera_post = async function(req, res) {
         //     });
         // }
 
-        await ModeloCarrera.create({
+        await Carrera.create({
             nombre: "Técnicatura Superior en Seguridad e Higiene",
             nombreAbreviado: "Seguridad e Higiene",
             titulo: "Técnico en Seguridad e Higiene",
@@ -73,7 +74,7 @@ exports.crearCarrera_post = async function(req, res) {
 exports.actualizarCarrera_post = async function(req, res) { 
     try { 
         let idCarrera = req.params.id; // se toma el ID de la URL 
-        let carrera = await ModeloCarrera.findByPk(idCarrera);
+        let carrera = await Carrera.findByPk(idCarrera);
 
         if(!carrera) { 
              throw("No se encontró la carrera");
@@ -83,7 +84,7 @@ exports.actualizarCarrera_post = async function(req, res) {
                  nombre: "Tecnicatura Superior en Seguridad e Higiene "
             }
 
-            let resultado = await ModeloCarrera.update(carreraActualizada, { where: {id : idCarrera} });
+            let resultado = await Carrera.update(carreraActualizada, { where: {id : idCarrera} });
             
             if(resultado) { 
                 res.send("Carrera actualizada con éxito");
@@ -101,7 +102,7 @@ exports.actualizarCarrera_post = async function(req, res) {
 exports.destruirCarrera_post = async function(req, res) {
     try { 
         let idCarrera = req.params.id;
-        let carrera = await ModeloCarrera.findByPk(idCarrera);
+        let carrera = await Carrera.findByPk(idCarrera);
 
         if(!carrera) { 
             throw("No existe la carrera");
