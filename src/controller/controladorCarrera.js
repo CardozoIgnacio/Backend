@@ -27,8 +27,20 @@ exports.encontrarCarrera_get = async function(req, res) {
     try { 
         let idCarrera = req.params.id; 
         await ModeloCarrera.findAll({ where: {id: idCarrera} })
-            .then(respuesta => {
-                res.render('carreras/carrera', { datos: respuesta[0] });
+            .then(respuesta => { 
+                let datos = { 
+                    id: respuesta[0].get('id'),
+                    nombre: respuesta[0].get('nombre'),
+                    nombreAbreviado: respuesta[0].get('nombreAbreviado'),
+                    titulo: respuesta[0].get('titulo'),
+                    resolucion: respuesta[0].get('resolucion'),
+                    duracion: respuesta[0].get('duracion'),
+                    horas: respuesta[0].get('horas'),
+                    tipo: respuesta[0].get('tipo'),
+                    modalidad: respuesta[0].get('modalidad'),
+                    validada: respuesta[0].get('validada')
+                }
+                res.render('carreras/carrera', { datos: datos });
             })
             .catch(error => console.log(error));
     }
