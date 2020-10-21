@@ -5,22 +5,22 @@
         <div class="row">
             <div class="col-md-12">
                 <center><h3>Actualizar carrera</h3></center>
-                <form action="/carreras/<%= id %>/actualizar" method="POST">
+                <form action="/carreras/<%= datos.id %>/actualizar" method="POST">
                     <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresar nombre de la carrera">
+                    <input type="text" class="form-control" name="nombre" id="nombre" value="<%= datos.nombre %>">
                     </div>
                     <div class="form-group">
                     <label for="nombreAbreviado">Nombre abreviado</label>
-                    <input type="text" class="form-control" name="nombreAbreviado" id="nombreAbreviado" placeholder="Ingresar nombre abreviado de la carrera">
+                    <input type="text" class="form-control" name="nombreAbreviado" id="nombreAbreviado" value="<%= datos.nombreAbreviado %>">
                     </div>
                     <div class="form-group">
                     <label for="titulo">Título</label>
-                    <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Ingresar título que obtendrá el graduado">
+                    <input type="text" class="form-control" name="titulo" id="titulo" value="<%= datos.titulo %>">
                     </div>
                     <div class="form-group">
                     <label for="resolucion">Resolución</label>
-                    <input type="text" class="form-control" name="resolucion" id="resolucion" placeholder="Ingrese número de resolución de la carrera">
+                    <input type="text" class="form-control" name="resolucion" id="resolucion" value="<%= datos.resolucion %>">
                     </div>
                     <div class="form-group">
                     <label for="duracion">Duración</label>
@@ -31,10 +31,11 @@
                         <option>4</option>
                         <option>5</option>
                     </select>
+                    <small>Duración actual: <%= datos.duracion %> años</small>
                     </div>
                     <div class="form-group">
                     <label for="horas">Horas</label>
-                    <input type="text" class="form-control" name="horas" id="horas" placeholder="Ingrese cantidad total de horas">
+                    <input type="text" class="form-control" name="horas" id="horas" value="<%= datos.horas %>">
                     </div>
                     <div class="form-group">
                     <label for="tipo">Tipo</label>
@@ -42,6 +43,7 @@
                         <option>Carrera vigente</option>
                         <option>Carrera a ciclo cerrado</option>
                     </select>
+                    <small>Tipo actual: <%= datos.tipo %></small>
                     </div>
                     <div class="form-group">
                     <label for="modalidad">Modalidad</label>
@@ -49,6 +51,7 @@
                         <option>Presencial</option>
                         <option>Virtual</option>
                     </select>
+                    <small>Modalidad actual: <%= datos.modalidad %></small>
                     </div>
                     <button type="submit" class="btn btn-success">Actualizar</button>
               </form>
