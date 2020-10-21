@@ -1,7 +1,6 @@
 var ModeloCarrera = require("../model/carrera")
 
 exports.listarCarreras_get = async function(req, res) { 
-    //TODO: Renderizado de listar carreras
     try { 
         await ModeloCarrera.findAll({})
             .then(carreras => {
