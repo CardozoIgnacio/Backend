@@ -17,7 +17,7 @@ exports.crearCarrera_get = function(req, res) {
     res.render('carreras/crear');
 }
 
-exports.actualizarCarrera_get = function(req, res) { 
+exports.actualizarCarrera_get = async function(req, res) { 
     try { 
         let idCarrera = req.params.id; 
         await ModeloCarrera.findAll({ where: {id: idCarrera} })
