@@ -10,13 +10,20 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      // define association herea
+      Fotos.belongsTo(models.Noticia)
     }
   };
   Fotos.init({
-    ruta: DataTypes.STRING,
+    ruta:{
+      type:DataTypes.STRING,
+      allowNull:false
+    },
     idFotos:{
-      type:DataTypes.INTEGER
+      type:DataTypes.INTEGER,
+      autoIncrement:true,
+      primaryKey:true,
+      allowNull:false
     }
   }, {
     sequelize,
