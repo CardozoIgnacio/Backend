@@ -18,9 +18,24 @@ exports.crearCarrera_get = function(req, res) {
     res.render('carreras/crear');
 }
 
-exports.actualizarCarrera_get = function(req, res) { 
-    //TODO: Enviar los datos actuales de la carrera a la vista, para hacer más simple su edición.
-    res.render('carreras/actualizar', { id: req.params.id });
+exports.actualizarCarrera_get = async function(req, res) { 
+    try { 
+        let idCarrera = req.params.id; 
+        await ModeloCarrera.findAll({ where: {id: idCarrera} })
+            .then(respuesta => { 
+                res.render('carreras/actualizar', { datos: respuesta[0] }); 
+            })
+            .catch(error => {
+                //TODO: Renderizar una vista de error 
+                res.send("Ocurrió un error");
+                console.log(error);
+            });
+    }
+    catch (error) { 
+        //TODO: Renderizar una vista de error acá también 
+        res.send("Ocurrió un error");
+        console.log("Ocurrió un error: " + error);
+    }
 }
 
 exports.encontrarCarrera_get = async function(req, res) {
