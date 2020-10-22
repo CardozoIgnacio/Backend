@@ -71,7 +71,8 @@ exports.crearCarrera_post = async function(req, res) {
                  res.redirect('/carreras/');
              })
              .catch(error => { 
-                res.send("Ocurrió un error")
+                //res.send("Ocurrió un error")
+                res.render('carreras/actualizar', { datos: carrera,errors:{nombre:"Nombre incorrecto"} }); 
                 console.log(error);
             });
     }
