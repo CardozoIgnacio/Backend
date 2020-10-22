@@ -13,11 +13,27 @@ var definicionModelo = {
 		type: Sequelize.STRING,
 		unique: true,
 		allowNull: false,
+		validate: { 
+			notNull: {
+				msg: "El campo nombre no puede estar vacío."
+			},
+			isAlpha: {
+				msg: "El nombre de la carrera no puede estar vacío ni contener números/símbolos."
+			}
+		}
 	},
 	nombreAbreviado: { 
 		type: Sequelize.STRING,
 		unique: true,
 		allowNull: false,
+		validate: { 
+			notNull: { 
+				msg: "El campo nombre abreviado no puede estar vacío."
+			},
+			isAlpha: {
+				msg: "El nombre abreviado de la carrera no puede estar vacío ni contener números/símbolos."
+			}
+		}
 	},
 	titulo: {
 		type: Sequelize.STRING,
