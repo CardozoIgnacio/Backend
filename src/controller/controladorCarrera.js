@@ -1,4 +1,5 @@
 var ModeloCarrera = require("../model/carrera")
+var { ValidationError } = require('sequelize');
 
 exports.listarCarreras_get = async function(req, res) { 
     try { 
@@ -72,8 +73,12 @@ exports.crearCarrera_post = async function(req, res) {
              })
              .catch(error => { 
                 //res.send("Ocurrió un error")
-                res.render('carreras/actualizar', { datos: carrera,errors:{nombre:"Nombre incorrecto"} }); 
-                console.log(error);
+                let mensajes = [];
+                if(error instanceof ValidationError) {
+                    error.errors.map(e => mensajes.push(e.message));
+                }
+                console.log("el error fue: ", error);
+                res.render('carreras/actualizar', { datos: carrera, errors: mensajes }); 
             });
     }
     catch(error) {
