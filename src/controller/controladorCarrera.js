@@ -1,5 +1,5 @@
 var ModeloCarrera = require("../model/carrera")
-var { ValidationError } = require('sequelize');
+var { ValidationError, UniqueConstraintError } = require('sequelize');
 
 exports.listarCarreras_get = async function(req, res) { 
     try { 
@@ -74,18 +74,24 @@ exports.crearCarrera_post = async function(req, res) {
              .catch(error => { 
                 //res.send("Ocurrió un error")
                 let mensajes = [];
-                if(error instanceof ValidationError) {
-                    error.errors.map(e => mensajes.push(e.message))
-                        .then()
-                        .catch(err => { 
-                            if(error.original.detail != "") { 
-                                mensajes.push(error.original.detail);
+                if (error instanceof UniqueConstraintError){
+                    console.log("ERROR",error.message)
+                }else{
+                    
+                    if(error instanceof ValidationError) {
+                        console.trace(error)
+                        error.errors.map(e => mensajes.push(e.message))
+                    console.dir(error.original)   
+                   
+                    if(error.original ) { 
+                        mensajes.push(error.original.detail);
                             } else {
                                 mensajes.push("Ocurrió un error inesperado. Contactar soporte");
                             }
-                        });
-                }
-                console.log("el error fue: ", error);
+                            
+                        }
+                    }
+                //console.log("el error fue: ", error);
                 res.render('carreras/actualizar', { datos: carrera, errors: mensajes }); 
             });
     }

@@ -13,8 +13,9 @@ var definicionModelo = {
 		type: Sequelize.STRING,
 		allowNull: false,
 		unique: {
-			args: 'nombre',
-			msg: "Ya existe una carrera con ese nombre."
+			args: true,
+			msg: "Ya existe una carrera con ese nombre.",
+			.error:"Ya existe una carrera con ese nombre"
 		},
 		validate: {
 			soloLetras(value) { 
@@ -29,7 +30,10 @@ var definicionModelo = {
 	},
 	nombreAbreviado: { 
 		type: Sequelize.STRING,
-		unique: true,
+		unique: {
+			args: true,
+			msg: "Ya existe una carrera con ese nombre."
+		},
 		allowNull: false,
 		validate: {
 			soloLetras(value) { 
@@ -44,7 +48,10 @@ var definicionModelo = {
 	},
 	titulo: {
 		type: Sequelize.STRING,
-		unique: true,
+		unique: {
+			args: true,
+			msg: "Ya existe una carrera con ese nombre."
+		},
 		allowNull: false,
 		validate: {
 			soloLetras(value) { 
@@ -59,7 +66,10 @@ var definicionModelo = {
 	},
 	resolucion: {
 		type: Sequelize.STRING,
-		unique: true, 
+		unique: {
+			args: true,
+			msg: "Ya existe una carrera con ese nombre."
+		}, 
 		allowNull: false,
 		validate: { 
 			notNull: { 
