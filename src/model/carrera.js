@@ -11,8 +11,11 @@ var definicionModelo = {
 	},
 	nombre: {
 		type: Sequelize.STRING,
-		unique: true,
 		allowNull: false,
+		unique: {
+			args: 'nombre',
+			msg: "Ya existe una carrera con ese nombre."
+		},
 		validate: {
 			soloLetras(value) { 
 				if( !(/^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/g.test( value ) )) { // no utilice isalpha porque prohibe espacios.
