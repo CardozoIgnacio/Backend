@@ -15,7 +15,7 @@ var definicionModelo = {
 		unique: {
 			args: true,
 			msg: "Ya existe una carrera con ese nombre.",
-			.error:"Ya existe una carrera con ese nombre"
+			error:"Ya existe una carrera con ese nombre"
 		},
 		validate: {
 			soloLetras(value) { 
