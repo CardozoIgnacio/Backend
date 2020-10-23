@@ -75,7 +75,15 @@ exports.crearCarrera_post = async function(req, res) {
                 //res.send("Ocurrió un error")
                 let mensajes = [];
                 if(error instanceof ValidationError) {
-                    error.errors.map(e => mensajes.push(e.message));
+                    try { 
+                        error.errors.map(e => mensajes.push(e.message))
+                    } catch { 
+                        if(error.original.detail != "") { 
+                            mensajes.push(error.original.detail);
+                        } else {
+                            mensajes.push("Ocurrió un error inesperado. Contactar soporte");
+                        }
+                    }
                 }
                 console.log("el error fue: ", error);
                 res.render('carreras/actualizar', { datos: carrera, errors: mensajes }); 
