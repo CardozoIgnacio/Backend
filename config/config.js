@@ -35,5 +35,9 @@ module.exports = {
   },
   // Configuracion de seed
   seederStorage:"json",
-  seederStoragePath:"./src/dataBase/seeders/seederRealizate/sequelizeSeed.json"
+  seederStoragePath:"./src/dataBase/seeders/seederRealizate/sequelizeSeed.json",
+  // Configuracion de las migraciones
+  migrationStorage:"sequelize",
+  migrationStorageTableName:"migrations",
+
 };

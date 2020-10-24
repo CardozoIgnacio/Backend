@@ -27,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Fotos',
+    modelName: 'Foto',
     timestamps:false,
     freezeTableName:true
   });

@@ -27,7 +27,7 @@ var server = http.createServer(app);
  */
 
 server.listen(port,()=>{
-  sequelize.sync({force:false}).then(()=>{
+  sequelize.authenticate().then(()=>{
    console.log("Coneccion establecida correctamente")
   })
 });
