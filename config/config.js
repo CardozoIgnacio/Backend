@@ -21,14 +21,23 @@
 //     "dialect": "mysql"
 //   }
 // }
-require('dotenv').config()
-module.exports={
-    username: process.env.DB_USER,
-    password: process.env.DB_PASS,
-    database: process.env.DB,
-    host: process.env.DB_HOST,
-    dialect :"postgres",
-    define:{
-      timestamps:false
-    }
-  }
+require("dotenv").config();
+module.exports = {
+  //Configuracion de la base de datos
+  //TODO: Configuracion automatica para reconcocer local de server
+  username: process.env.DB_USER,
+	password: process.env.DB_PASS,
+	database: process.env.DB,
+	host: process.env.DB_HOST,
+	dialect: "postgres",
+	define: {
+		timestamps: false,
+  },
+  // Configuracion de seed
+  seederStorage:"json",
+  seederStoragePath:"./src/dataBase/seeders/seederRealizate/sequelizeSeed.json",
+  // Configuracion de las migraciones
+  migrationStorage:"sequelize",
+  migrationStorageTableName:"migrations",
+
+};

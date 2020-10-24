@@ -1,5 +1,5 @@
 var Sequelize = require("sequelize");
-var db = require("../dataBase/dbController");
+var db = require("../../dataBase/dbController");
 
 // 1: Esquema del modelo
 var definicionModelo = {

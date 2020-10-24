@@ -7,8 +7,8 @@ var logger = require('morgan');
 // 2-App Modules
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/usuarios');
-var carrerasRouter = require('./routes/carreras');
-var noticiasRouter = require('./routes/noticias')
+ var carrerasRouter = require('./routes/carreras');
+ var noticiasRouter = require('./routes/noticias')
 
 // 3-Inicitialization
 var app = express();

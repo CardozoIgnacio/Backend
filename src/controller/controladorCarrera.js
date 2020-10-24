@@ -1,9 +1,10 @@
-var ModeloCarrera = require("../model/carrera")
+// var ModeloCarrera = require("../model/carrera")
+var {Carrera}=require('../model/index')
 
 exports.listarCarreras_get = async function(req, res) { 
     //TODO: Renderizado de listar carreras
     try { 
-        await ModeloCarrera.findAll({})
+        await Carrera.findAll({})
             .then(carreras => {
                 res.render('carreras/listarCarreras', { carreras: carreras });
             })
@@ -41,7 +42,7 @@ exports.actualizarCarrera_get = async function(req, res) {
 exports.encontrarCarrera_get = async function(req, res) {
     try { 
         let idCarrera = req.params.id; 
-        await ModeloCarrera.findAll({ where: {id: idCarrera} })
+        await Carrera.findAll({ where: {id: idCarrera} })
             .then(respuesta => {
                 res.render('carreras/carrera', { datos: respuesta[0] });
             })
@@ -56,6 +57,7 @@ exports.encontrarCarrera_get = async function(req, res) {
 exports.crearCarrera_post = async function(req, res) {
     let carrera = {}
     //TODO: verificar autenticación y rol correspondiente
+    //TODO: Verficiar correctitud de los datos ingresados 
     try { 
         carrera.nombre = req.body.nombre; 
         carrera.nombreAbreviado = req.body.nombreAbreviado;
@@ -67,7 +69,7 @@ exports.crearCarrera_post = async function(req, res) {
         carrera.modalidad = req.body.modalidad;
         carrera.validada = true;
 
-        await ModeloCarrera.create(carrera)
+        await Carrera.create(carrera)
              .then(resultado => {
                  res.redirect('/carreras/');
              })
@@ -85,7 +87,7 @@ exports.crearCarrera_post = async function(req, res) {
 exports.actualizarCarrera_post = async function(req, res) { 
     try { 
         let idCarrera = req.params.id; // se toma el ID de la URL 
-        let carrera = await ModeloCarrera.findByPk(idCarrera);
+        let carrera = await Carrera.findByPk(idCarrera);
 
         if(!carrera) { 
             //TODO: Crear plantilla para cuando sucede un error.
@@ -104,7 +106,7 @@ exports.actualizarCarrera_post = async function(req, res) {
                 validada: true
             }
 
-            let resultado = await ModeloCarrera.update(carreraActualizada, { where: {id : idCarrera} });
+            let resultado = await Carrera.update(carreraActualizada, { where: {id : idCarrera} });
             
             if(resultado) {
                 //TODO: Se debe agregar un mensaje para que el admin. sepa que se modificó con éxito 
@@ -124,14 +126,14 @@ exports.actualizarCarrera_post = async function(req, res) {
 exports.destruirCarrera_post = async function(req, res) {
     try { 
         let idCarrera = req.params.id;
-        let carrera = await ModeloCarrera.findByPk(idCarrera);
+        let carrera = await Carrera.findByPk(idCarrera);
 
         if(!carrera) { 
             res.send("Ocurrió un error");
             console.log("Se intentó borrar una carrera que no existe");
         } else { 
             await carrera.destroy();
-            res.redirect('/carreras/');
+            res.redirect('/carreras/'); 
         }
     }
     catch(error) {

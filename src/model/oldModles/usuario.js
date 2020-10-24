@@ -1,5 +1,5 @@
 var Sequelize = require("sequelize");
-var db = require("../dataBase/dbController");
+var db = require("../../dataBase/dbController");
 var bycrypt = require("bcrypt");
 // 1: The model schema.
 var definicionModelo= {
@@ -23,7 +23,7 @@ var definicionModelo= {
 		allowNull:false
 	},
 	password: {
-		type: Sequelize.STRING,
+		type: Sequelize.STRING
 		allowNull: false,
 	},
 	rol: {
