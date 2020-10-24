@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			// define association here
 		}
+		comparePasswords
 	}
 	Usuario.init(
 		{
@@ -29,6 +30,7 @@ module.exports = (sequelize, DataTypes) => {
 			hooks: {
 				beforeValidate: hashPassword,
 			},
+			
 		}
 	);
 
@@ -42,5 +44,17 @@ async function hashPassword(usuario) {
 		);
 	} catch (err) {
 		throw "/src/model/usuario.js -- No se pudo encryptar la contraseña" + err;
+	}
+}
+async function comparePasswords(password,id,callback ) {
+	try {
+		var user = await this.findOne({where:{id:id}})
+		if(user){
+			var {dataValues}=user
+			const esValido = await bycrypt.compare(password,dataValues.password)
+			callback(esValido)
+		}
+	} catch (error) {
+		callback(undefined,error)
 	}
 }
