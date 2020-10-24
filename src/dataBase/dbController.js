@@ -1,8 +1,12 @@
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+//++++ SOLO A MANERA ILUSTRATIVA DE COMO FUNCIONA srx/model/indexedDB.js++++++
+//++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 const { Sequelize, DataTypes } = require('sequelize');
 const config = require('../../config/config')
 const db ={}
 // Option 1: Passing a connection URI
 db.connection = new Sequelize(config.database,config.username,config.password,{host:config.host,dialect:'postgres'}) //Example for postgres
+
 
 
 //sequelize.sync({ force: true });
