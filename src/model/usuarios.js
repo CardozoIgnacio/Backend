@@ -12,7 +12,14 @@ module.exports = (sequelize, DataTypes) => {
 		static associate(models) {
 			// define association here
 		}
-		comparePasswords
+		async  comparePasswords(password,id,callback ) {
+			try {
+					const esValido = await bycrypt.compare(password,this.password)
+					callback(esValido)
+			} catch (error) {
+				callback("ES undefined",error)
+			}
+		}	
 	}
 	Usuario.init(
 		{
@@ -33,7 +40,6 @@ module.exports = (sequelize, DataTypes) => {
 			
 		}
 	);
-
 	return Usuario;
 };
 async function hashPassword(usuario) {
@@ -44,17 +50,5 @@ async function hashPassword(usuario) {
 		);
 	} catch (err) {
 		throw "/src/model/usuario.js -- No se pudo encryptar la contraseña" + err;
-	}
-}
-async function comparePasswords(password,id,callback ) {
-	try {
-		var user = await this.findOne({where:{id:id}})
-		if(user){
-			var {dataValues}=user
-			const esValido = await bycrypt.compare(password,dataValues.password)
-			callback(esValido)
-		}
-	} catch (error) {
-		callback(undefined,error)
 	}
 }

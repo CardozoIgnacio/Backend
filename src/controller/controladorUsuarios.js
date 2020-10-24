@@ -39,6 +39,9 @@ exports.crearUsuario_post = async function (req, res) {
 			rol: 1,
 			nombreAbreviado: "GP",
 		});
+		var user =await Usuario.findOne({where:{rol:1}})
+		console.log(await user.comparePasswords("1234",(esValido,err)=>{console.log(esValido)}))
+		
 		res.send({ msj: "Usuario creado exitosamente" });
 	} catch (error) {
 		//TODO :Mensaje de error ControllerUsuario
