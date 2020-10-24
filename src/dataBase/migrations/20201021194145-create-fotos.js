@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Fotos', {   
+    await queryInterface.createTable('Foto', {   
       ruta: {
         type: Sequelize.STRING
       },
@@ -19,6 +19,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Fotos');
+    await queryInterface.dropTable('Foto');
   }
 };
