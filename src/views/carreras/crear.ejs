@@ -4,23 +4,33 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+              <% if(locals.errors) { %>
+              <div class="alert alert-danger" role="alert">
+                <center><b>Se detectaron errores: </b></center>
+                <br>
+                <% for (let error of errors) { %>
+                  - <%= error %> 
+                  <br>
+                <% } %>
+              </div>
+              <% } %>
                 <center><h3>Crear nueva carrera</h3></center>
                 <form action="/carreras/" method="POST">
                     <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresar nombre de la carrera">
+                    <input type="text" class="form-control" name="nombre" id="nombre" placeholder="Ingresar nombre de la carrera" value="<%= locals.datos.nombre %>">
                     </div>
                     <div class="form-group">
                     <label for="nombreAbreviado">Nombre abreviado</label>
-                    <input type="text" class="form-control" name="nombreAbreviado" id="nombreAbreviado" placeholder="Ingresar nombre abreviado de la carrera">
+                    <input type="text" class="form-control" name="nombreAbreviado" id="nombreAbreviado" value="<%= locals.datos.nombreAbreviado %>">
                     </div>
                     <div class="form-group">
                     <label for="titulo">Título</label>
-                    <input type="text" class="form-control" name="titulo" id="titulo" placeholder="Ingresar título que obtendrá el graduado">
+                    <input type="text" class="form-control" name="titulo" id="titulo" value="<%= locals.datos.titulo %>">
                     </div>
                     <div class="form-group">
                     <label for="resolucion">Resolución</label>
-                    <input type="text" class="form-control" name="resolucion" id="resolucion" placeholder="Ingrese número de resolución de la carrera">
+                    <input type="text" class="form-control" name="resolucion" id="resolucion" value="<%= locals.datos.resolucion %>">
                     </div>
                     <div class="form-group">
                     <label for="duracion">Duración</label>
@@ -34,7 +44,7 @@
                     </div>
                     <div class="form-group">
                     <label for="horas">Horas</label>
-                    <input type="text" class="form-control" name="horas" id="horas" placeholder="Ingrese cantidad total de horas">
+                    <input type="text" class="form-control" name="horas" id="horas" value="<%= locals.datos.horas %>">
                     </div>
                     <div class="form-group">
                     <label for="tipo">Tipo</label>
