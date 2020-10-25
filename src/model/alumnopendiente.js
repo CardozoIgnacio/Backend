@@ -14,7 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   AlumnoPendiente.init({
-    nroPreinscripcion: DataTypes.INTEGER,
+    nroPreinscripcion: {
+      allowNull:false,
+      autoIncrement:true,
+      primaryKey:true,
+      type:DataTypes.INTEGER
+    },
     fotoCarnet: DataTypes.BOOLEAN,
     certificadoSalud: DataTypes.BOOLEAN,
     fotocopiaDni: DataTypes.BOOLEAN,
