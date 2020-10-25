@@ -26,43 +26,43 @@ module.exports = {
       "nombre": "Angelita",
       "apellido": "Pettyfar",
       "password": "SSReWDATSs",
-      "rol": 4
+      "rol": 1
     }, {
       "usuario": "sdownie4",
       "nombre": "Selig",
       "apellido": "Downie",
       "password": "dyfeYjH",
-      "rol": 5
+      "rol": 2
     }, {
       "usuario": "plouthe5",
       "nombre": "Paolo",
       "apellido": "Louthe",
       "password": "ShaWU2",
-      "rol": 6
+      "rol":3 
     }, {
       "usuario": "ibrakewell6",
       "nombre": "Iona",
       "apellido": "Brakewell",
       "password": "z8502RJU",
-      "rol": 7
+      "rol": 5
     }, {
       "usuario": "cstump7",
       "nombre": "Clementia",
       "apellido": "Stump",
       "password": "AtZS3Vei",
-      "rol": 8
+      "rol": 1
     }, {
       "usuario": "lbaldam8",
       "nombre": "Louie",
       "apellido": "Baldam",
       "password": "f6pWub",
-      "rol": 9
+      "rol":1 
     }, {
       "usuario": "pruf9",
       "nombre": "Pru",
       "apellido": "Ruf",
       "password": "WJgCtrOTcwKZ",
-      "rol": 10
+      "rol": 1
     }];
 		await queryInterface.bulkInsert("Usuario", arryUsuarios, {});
 	},
