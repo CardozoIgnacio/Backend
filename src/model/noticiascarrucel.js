@@ -14,7 +14,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   noticiasCarrucel.init({
-    idNoticiaCarrucel: DataTypes.INTEGER
+    idNoticiaCarrucel:{
+      type: DataTypes.INTEGER,
+      autoIncrement:true,
+      primaryKey:true,
+      allowNull:false
+    } 
   }, {
     sequelize,
     modelName: 'noticiasCarrucel',
