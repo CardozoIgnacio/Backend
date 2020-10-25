@@ -20,6 +20,9 @@ module.exports = {
       fechaFinalizacion: {
         type: Sequelize.DATE
       },
+      token:{
+        type: Sequelize.STRING
+      }
      
     });
   },

@@ -23,7 +23,8 @@ module.exports = (sequelize, DataTypes) => {
     tipoTramite: DataTypes.STRING,
     fechaInicio: DataTypes.DATE,
     estado: DataTypes.BOOLEAN,
-    fechaFinalizacion: DataTypes.DATE
+    fechaFinalizacion: DataTypes.DATE,
+    token:DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Tramite',
