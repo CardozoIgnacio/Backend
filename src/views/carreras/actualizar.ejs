@@ -1,0 +1,79 @@
+<%- include('../archivos/cabecera') %> 
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <center><h3>Actualizar carrera</h3></center>
+                <form action="/carreras/<%= datos.id %>/actualizar" method="POST">
+                    <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" value="<%= datos.nombre %>">
+                    </div>
+                    <div class="form-group">
+                    <label for="nombreAbreviado">Nombre abreviado</label>
+                    <input type="text" class="form-control" name="nombreAbreviado" id="nombreAbreviado" value="<%= datos.nombreAbreviado %>">
+                    </div>
+                    <div class="form-group">
+                    <label for="titulo">Título</label>
+                    <input type="text" class="form-control" name="titulo" id="titulo" value="<%= datos.titulo %>">
+                    </div>
+                    <div class="form-group">
+                    <label for="resolucion">Resolución</label>
+                    <input type="text" class="form-control" name="resolucion" id="resolucion" value="<%= datos.resolucion %>">
+                    </div>
+                    <div class="form-group">
+                    <label for="duracion">Duración</label>
+                    <select class="form-control" name="duracion" id="duracion">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                    <small>Duración actual: <%= datos.duracion %> años</small>
+                    </div>
+                    <div class="form-group">
+                    <label for="horas">Horas</label>
+                    <input type="text" class="form-control" name="horas" id="horas" value="<%= datos.horas %>">
+                    </div>
+                    <div class="form-group">
+                    <label for="tipo">Tipo</label>
+                    <select class="form-control" name="tipo" id="tipo">
+                        <option>Carrera vigente</option>
+                        <option>Carrera a ciclo cerrado</option>
+                    </select>
+                    <small>Tipo actual: <%= datos.tipo %></small>
+                    </div>
+                    <div class="form-group">
+                    <label for="modalidad">Modalidad</label>
+                    <select class="form-control" name="modalidad" id="modalidad">
+                        <option>Presencial</option>
+                        <option>Virtual</option>
+                    </select>
+                    <small>Modalidad actual: <%= datos.modalidad %></small>
+                    </div>
+                    <button type="submit" class="btn btn-success">Actualizar</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script> 
+  <!-- <script src="js/scrolling-nav.js"></script>  -->
+
+</body>
+
+</html>
