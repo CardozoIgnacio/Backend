@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('AlumnoPendientes', {
+    await queryInterface.createTable('AlumnoPendiente', {
       nroPreinscripcion: {
         allowNull: false,
         autoIncrement: true,
@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.DATE
       },
       dni: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       email: {
         type: Sequelize.STRING
@@ -36,22 +36,15 @@ module.exports = {
         type: Sequelize.STRING
       },
       numTelefono: {
-        type: Sequelize.INTEGER
+        type: Sequelize.BIGINT
       },
       abcFormulario: {
         type: Sequelize.BOOLEAN
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+ 
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('AlumnoPendientes');
+    await queryInterface.dropTable('AlumnoPendiente');
   }
 };
