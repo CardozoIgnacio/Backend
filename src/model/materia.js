@@ -22,7 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     },
     nombreProfesor: DataTypes.STRING,
     cargaHoraria: DataTypes.INTEGER,
+    //TODO:Revisar el largo del contenido 255 quedaria corto?
     contenido: DataTypes.STRING,
+    //TODO: Las materia se dicatan mas de un dia
     dias: DataTypes.STRING
   }, {
     sequelize,
