@@ -1,7 +1,7 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('ConsultaFormularios', {
+    await queryInterface.createTable('ConsultaFormulario', {
       idConsulta: {
         allowNull: false,
         autoIncrement: true,
@@ -20,6 +20,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('ConsultaFormularios');
+    await queryInterface.dropTable('ConsultaFormulario');
   }
 };

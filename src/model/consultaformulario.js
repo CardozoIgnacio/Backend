@@ -21,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			email: DataTypes.STRING,
 			nombre: DataTypes.STRING,
+			//TODO:Cambiar el tipo de dato de la consulta para que acepete mas caracteres
 			consulta: DataTypes.STRING,
 		},
 		{
