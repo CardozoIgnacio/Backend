@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false,
       autoIncrement:true
     },
+    //TODO:Normalizar y crear otra tabla
     tipoTramite: DataTypes.STRING,
     fechaInicio: DataTypes.DATE,
     estado: DataTypes.BOOLEAN,
