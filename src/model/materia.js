@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey:true,
       type:DataTypes.INTEGER
     },
+    //TODO:Falata el nombre de la materia, realizar refacto y migracion correspondiente
     nombreProfesor: DataTypes.STRING,
     cargaHoraria: DataTypes.INTEGER,
     //TODO:Revisar el largo del contenido 255 quedaria corto?
