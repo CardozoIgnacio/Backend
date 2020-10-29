@@ -7,7 +7,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         primaryKey:true,
         allownull:false,
-        autoincrement:true,
+        autoIncrement:true,
       },
       nombreRol: {
         type: Sequelize.STRING

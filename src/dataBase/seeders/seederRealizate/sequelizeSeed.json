@@ -1,6 +1,12 @@
 [
-  "20201028212404-crear-carrera.js",
-  "20201028210226-crea-categorias.js",
+  "20201024173754-crear-usuarios.js",
+  "20201028133831-crear-materias.js",
+  "20201028153421-crear-tramite.js",
+  "20201028182549-crear-consultas.js",
+  "20201028190611-crear-alumno-pendiente.js",
+  "20201028194625-crea-roles.js",
+  "20201028202459-crear-noticia.js",
   "20201028205138-crea-foto.js",
-  "20201028202459-crear-noticia.js"
+  "20201028210226-crea-categorias.js",
+  "20201028212404-crear-carrera.js"
 ]
