@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull:false
     },
     tituloNoticia: DataTypes.STRING,
-    cuerpoNoticia: DataTypes.STRING,
+    cuerpoNoticia: DataTypes.TEXT,
     visibilidad: DataTypes.BOOLEAN
   }, {
     sequelize,

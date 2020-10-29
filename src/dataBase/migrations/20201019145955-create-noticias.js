@@ -8,7 +8,7 @@ module.exports = {
         allowNull:false
       },
       tituloNoticia: Sequelize.STRING,
-      cuerpoNoticia: Sequelize.STRING,
+      cuerpoNoticia: Sequelize.TEXT,
       visibilidad: Sequelize.BOOLEAN
      
     });
