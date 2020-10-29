@@ -1,4 +1,6 @@
 'use strict';
+//TODO: DEBATIR: deberia existir noticias carrucel... seria mas sencillo tener un valor en la noticia que indique q noticia va a ir al carrucel
+
 const {
   Model
 } = require('sequelize');
