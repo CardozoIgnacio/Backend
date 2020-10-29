@@ -5,9 +5,9 @@ module.exports = {
    
       idRol: {
         type: Sequelize.INTEGER,
+        primaryKey:true,
         allownull:false,
-        primarykey:true,
-        autoincrement:true
+        autoincrement:true,
       },
       nombreRol: {
         type: Sequelize.STRING
