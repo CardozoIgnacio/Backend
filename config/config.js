@@ -34,8 +34,8 @@ module.exports = {
 		timestamps: false,
   },
   // Configuracion de seed
-  seederStorage:"json",
-  seederStoragePath:"./src/dataBase/seeders/seederRealizate/sequelizeSeed.json",
+  seederStorage:"sequelize",
+  seederStorageTableName:"seed",
   // Configuracion de las migraciones
   migrationStorage:"sequelize",
   migrationStorageTableName:"migrations",
