@@ -26,10 +26,10 @@ module.exports = (sequelize, DataTypes) => {
     nombre: DataTypes.STRING,
     apellido: DataTypes.STRING,
     fechaNac: DataTypes.DATE,
-    dni: DataTypes.INTEGER,
+    dni: DataTypes.BIGINT,
     email: DataTypes.STRING,
     direccion: DataTypes.STRING,
-    numTelefono: DataTypes.INTEGER,
+    numTelefono: DataTypes.BIGINT,
     abcFormulario: DataTypes.BOOLEAN
   }, {
     sequelize,
