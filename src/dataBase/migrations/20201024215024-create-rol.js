@@ -1,30 +1,22 @@
 'use strict';
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable('Rols', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
+    await queryInterface.createTable('Rol', {
+   
       idRol: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allownull:false,
+        primarykey:true,
+        autoincrement:true
       },
       nombreRol: {
         type: Sequelize.STRING
-      },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
       }
+      //TODO:Guardar premisos???
+   
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable('Rols');
+    await queryInterface.dropTable('Rol');
   }
 };
