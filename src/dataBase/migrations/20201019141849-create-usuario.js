@@ -20,10 +20,7 @@ module.exports = {
       password: {
         type: Sequelize.STRING
       },
-      rol: {
-        type: Sequelize.INTEGER
-      },
-   
+      
     });
   },
   down: async (queryInterface, Sequelize) => {
