@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Noticias extends Model {
+  class fotoNoticia extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,25 +11,32 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Noticias.belongsToMany(models.Foto,{through:'fotoNoticia'})
     }
   };
-  Noticias.init({
-    idNoticia :{
+  fotoNoticia.init({
+    idFoto:{
       type:DataTypes.INTEGER,
-      autoIncrement:true,
       primaryKey:true,
-      allowNull:false
+      allowNull:false,
+     references:{
+       model:sequelize.Foto,
+       key:'idFotos'
+     } 
+      
     },
-    tituloNoticia: DataTypes.STRING,
-    cuerpoNoticia: DataTypes.TEXT,
-    visibilidad: DataTypes.BOOLEAN
+    idNoticia:{
+      type:DataTypes.INTEGER,
+      primaryKey:true,
+      allowNull:false,
+      references:{
+        model:sequelize.Noticia,
+        key:'idNoticia'
+      } 
+      
+    }
   }, {
     sequelize,
-    modelName: 'Noticia',
-    timestamps:false,
-    freezeTableName:true
-
+    modelName: 'fotoNoticia',
   });
-  return Noticias;
+  return fotoNoticia;
 };
