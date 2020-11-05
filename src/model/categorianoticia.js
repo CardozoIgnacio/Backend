@@ -1,7 +1,7 @@
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-	class Noticias extends Model {
+	class CategoriaNoticia extends Model {
 		/**
 		 * Helper method for defining associations.
 		 * This method is not a part of Sequelize lifecycle.
@@ -9,28 +9,33 @@ module.exports = (sequelize, DataTypes) => {
 		 */
 		static associate(models) {
 			// define association here
-      Noticias.belongsToMany(models.Foto, { through: "FotoNoticia" });
-      Noticias.belongsToMany(models.Categoria, {through: "CategoriaNoticia"})
 		}
 	}
-	Noticias.init(
+	CategoriaNoticia.init(
 		{
 			idNoticia: {
 				type: DataTypes.INTEGER,
-				autoIncrement: true,
 				primaryKey: true,
 				allowNull: false,
+				references: {
+          model: sequelize.Noticia,
+          key:"idNoticia"
+				},
 			},
-			tituloNoticia: DataTypes.STRING,
-			cuerpoNoticia: DataTypes.TEXT,
-			visibilidad: DataTypes.BOOLEAN,
+      idCategoria:{
+       type: DataTypes.INTEGER,
+       allowNull:false,
+       primaryKey:true,
+       references:{
+         model:sequelize.Categoria,
+         key:"idCategoria"
+       }
+      }
 		},
 		{
 			sequelize,
-			modelName: "Noticia",
-			timestamps: false,
-			freezeTableName: true,
+			modelName: "CategoriaNoticia",
 		}
 	);
-	return Noticias;
+	return CategoriaNoticia;
 };
