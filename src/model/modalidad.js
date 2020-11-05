@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 	}
 	Modalidad.init(
 		{
-			idRegimen: {
+			idModalidad: {
 				type: DataTypes.INTEGER,
 				allowNull: false,
 				autoIncrement: true,
