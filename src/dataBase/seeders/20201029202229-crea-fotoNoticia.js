@@ -6,11 +6,11 @@ module.exports = {
         idFotos:1,
         idNoticia:1
       }]
-      await queryInterface.bulkInsert('fotoNoticia',fotoNoticia , {});
+      await queryInterface.bulkInsert('FotoNoticia',fotoNoticia , {});
     
   },
 
   down: async (queryInterface, Sequelize) => {
-      await queryInterface.bulkDelete('fotoNoticia', null, {});
+      await queryInterface.bulkDelete('FotoNoticia', null, {});
   }
 };
