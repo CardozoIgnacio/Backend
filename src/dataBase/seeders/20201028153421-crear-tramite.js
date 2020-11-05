@@ -17,7 +17,7 @@ module.exports = {
         nombreTipoTramite:"InscripcionMateria"
       },
 		];
-		await queryInterface.bulkInsert("tipoTramite", tramitesNombres, {})
+		await queryInterface.bulkInsert("TipoTramite", tramitesNombres, {})
     var tramites=[{
       "tipoTramite": 1,
       "fechaInicio": "06/02/2020",

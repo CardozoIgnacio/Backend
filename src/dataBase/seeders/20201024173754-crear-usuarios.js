@@ -69,7 +69,7 @@ module.exports = {
       user.password =  bcrypt.hashSync(user.password, bcrypt.genSaltSync(8));
       return user
     })
-    console.log(arryUsuariosEncry)
+    // console.log(arryUsuariosEncry)
 		await queryInterface.bulkInsert("Usuario", arryUsuariosEncry, {});
   
 	},
