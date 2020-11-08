@@ -21,15 +21,13 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			nombreTipoTramite: {
 				type: DataTypes.STRING,
-				autoIncrement: true,
-				allowNull: false,
-				primaryKey: true,
+				allowNull: false
 			},
 		},
 		{
 			sequelize,
 			freezeTableName:true,
-			modelName: "tipoTramite",
+			modelName: "TipoTramite",
 		}
 	);
 	return tipoTramite;
