@@ -1,0 +1,51 @@
+<%- include('../archivos/cabecera') %> 
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+              <a href="/noticias/crearNoticia">Crear nueva noticia</a>
+              <br>
+              <% noticias.forEach(noticia => { %>
+                <br>
+                <% if(noticia.visibilidad) { %>
+                  <!-- Hay que buscar la manera de que detecte cualquier extensión de imágen (jpg, jpeg, png)-->
+                  <img src="../public/uploads/<%= noticia.tituloNoticia %>/0.jpeg">
+                  <h2><a href="./mostrar/<%= noticia.idNoticia %>/"><%= noticia.tituloNoticia %></a></h2>
+                  <br>
+                  <p><%= noticia.cuerpoNoticia %> </p>
+                  <br>
+                  <!-- Acá se deberá comprobar si el usuario tiene privilegios suficientes -->
+                  <button><a href="./<%= noticia.idNoticia %>/actualizar">Actualizar noticia</a></button> <form method="POST" action="./<%= noticia.idNoticia %>/destruir %>"><button type="submit">Eliminar</button></form>
+                  <br>
+                <% } %>
+              <% }) %>
+                <br>
+            </div>
+        </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script> 
+  <!-- <script src="js/scrolling-nav.js"></script>  -->
+
+</body>
+
+</html>

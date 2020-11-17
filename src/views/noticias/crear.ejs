@@ -1,0 +1,48 @@
+<%- include('../archivos/cabecera') %> 
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+              <center><h3>Publicar nueva noticia</h3></center>
+              <form action="" method="POST" enctype="multipart/form-data">
+                    <div class="form-group">
+                      <label for="nombre">Título de la noticia</label>
+                      <input type="text" class="form-control" name="tituloNoticia" id="tituloNoticia" placeholder="Ingresar título de la noticia">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                      <label for="cuerpoNoticia">Contenido de la noticia</label>
+                      <textarea class="form-control" name="cuerpoNoticia" id="cuerpoNoticia" rows="3"></textarea>
+                    </div> 
+                    <br>
+                    <div class="form-control">
+                      <label for="fotos">Seleccionar fotos</label>
+                      <input type="file" class="form-control" name="fotos" id="fotos" multiple="multilple" required>
+                    </div>
+                    <br>
+                    <br>
+                    <button type="submit" class="btn btn-success float-right">Crear noticia</button>
+              </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <script src="/public/vendor/jquery/jquery.min.js"></script>
+  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script> 
+  <!-- <script src="js/scrolling-nav.js"></script>  -->
+
+</body>
+
+</html>
