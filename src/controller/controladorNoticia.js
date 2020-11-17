@@ -27,14 +27,25 @@ exports.crearNoticia_post = async function (req, res) {
   let noticia = {}
   try {
     await mkdirp(`public/uploads/${req.body.tituloNoticia}`).then(resultado => console.log("Carpeta creada: ", resultado));
+    let contador = 0; 
     req.files.forEach(function (foto) {
-      //TODO: una vez copiado el archivo se deberia borrar el original (foto.path) por razones de optimización.
-      fs.copyFile(foto.path, path.join('public', 'uploads', req.body.tituloNoticia, `${foto['filename']}.${foto['mimetype'].split('/')[1]}`), (err) => {
+      fs.copyFile(foto.path, path.join('public', 'uploads', req.body.tituloNoticia, `${contador}.${foto['mimetype'].split('/')[1]}`), (err) => {
         if(err) { 
           console.log("Error al copiar archivo: ", err);
-        }      
+        } else { 
+          // significa que la copia fue exitosa, por ende borramos el archivo original
+          fs.unlink(foto.path, (err) => {
+            if(err) { 
+              console.log("Ocurrió un error al borrar la foto original de una noticia creada, deberá realizarse manualmente.");
+            } else { 
+              console.log("Foto borrada");
+            }
+          });
+        }    
       }
-    )});
+    )
+    contador++;
+  });
 
     noticia.tituloNoticia = req.body.tituloNoticia;
     noticia.cuerpoNoticia = req.body.cuerpoNoticia; 
