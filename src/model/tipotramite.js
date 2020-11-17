@@ -21,9 +21,7 @@ module.exports = (sequelize, DataTypes) => {
 			},
 			nombreTipoTramite: {
 				type: DataTypes.STRING,
-				autoIncrement: true,
 				allowNull: false,
-				primaryKey: true,
 			},
 		},
 		{
