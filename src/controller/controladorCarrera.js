@@ -1,12 +1,12 @@
 // var ModeloCarrera = require("../model/carrera")
-var {Carrera}=require('../model/index')
+var {Carrera} = require('../model/index')
 
 exports.listarCarreras_get = async function(req, res) { 
     //TODO: Renderizado de listar carreras
     try { 
         await Carrera.findAll({})
             .then(carreras => {
-                res.render('carreras/listarCarreras', { carreras: carreras });
+                res.render('carreras/listarCarreras', { carreras: carreras, usuario: req.user });
             })
             .catch(error => console.log(error));
     }
@@ -16,15 +16,15 @@ exports.listarCarreras_get = async function(req, res) {
 }
 
 exports.crearCarrera_get = function(req, res) { 
-    res.render('carreras/crear');
+    res.render('carreras/crear', { usuario: req.user });
 }
 
 exports.actualizarCarrera_get = async function(req, res) { 
-    try { 
+    try {                                                                                                                                                                                                                                                                                           
         let idCarrera = req.params.id; 
-        await ModeloCarrera.findAll({ where: {id: idCarrera} })
+        await Carrera.findAll({ where: {id: idCarrera} })
             .then(respuesta => { 
-                res.render('carreras/actualizar', { datos: respuesta[0] }); 
+                res.render('carreras/actualizar', { datos: respuesta[0], usuario: req.user }); 
             })
             .catch(error => {
                 //TODO: Renderizar una vista de error 
@@ -44,7 +44,7 @@ exports.encontrarCarrera_get = async function(req, res) {
         let idCarrera = req.params.id; 
         await Carrera.findAll({ where: {id: idCarrera} })
             .then(respuesta => {
-                res.render('carreras/carrera', { datos: respuesta[0] });
+                res.render('carreras/carrera', { datos: respuesta[0], usuario: req.user });
             })
             .catch(error => console.log(error));
     }
