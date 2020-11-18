@@ -1,52 +1,44 @@
-<%- include('../archivos/cabecera') %> 
+<%- include('../archivos/cabecera', { usuario: usuario }) %> 
 
-<style>
-    table, th, td {
-        border: 1px solid black;
-    }
-</style>
-
-<section>
+<% if(usuario) { %> 
+<section class="latest_news_2" id="latest_news_style_2">
     <div class="container">
+        <center><a href="/carreras/crearCarrera" class="btn btn-sm btn-dark">Insertar nueva carrera</a></center>
+        <br>
         <div class="row">
-            <div class="col-md-12">
-                <table>
-                    <tr>
-                        <th><center>Carrera</center></th>
-                        <th><center>Acción</center></th>
-                    </tr> 
-                    <% carreras.forEach(carrera => { %>
-                    <tr>
-                        <td><%= carrera.nombre %></td>
-                        <td>
-                            <a href='/carreras/mostrar/<%= carrera.id %>' class="btn btn-sm btn-info">Ver</a>
-                            <a href="/carreras/<%= carrera.id %>/actualizar" class="btn btn-sm btn-warning">Actualizar</a>
-                            <form action="/carreras/<%= carrera.id %>/destruir" method="POST"><button type="submit" class="btn btn-sm btn-danger">Borrar</a></form>
-                        </td>
-                    </tr>
-                    <% }) %>
-                </table> 
-                <br>
-                <a href="/carreras/crearCarrera" class="btn btn-primary">Insertar nueva carrera</a>
-            </div>
+            <!-- //TODO: nuevamente sería conveniente cambiar los nombres de las clases -->
+            <% carreras.forEach(carrera => { %>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                 <div class="single_item">
+                    <div class="item_wrapper">
+                        <h3><a href="/carreras/mostrar/<%= carrera.id %>" title="">Carrera: <%= carrera.nombre %> </a></h3> 
+                    </div>
+                    <div class="blog_title">
+                        <ul class="post_bloger">
+                            <li>
+                                <a href="/carreras/<%= carrera.id %>/actualizar" class="btn btn-sm btn-dark">Actualizar</a>
+                            </li> 
+                            <li>
+                                <form action="/carreras/<%= carrera.id %>/destruir" method="POST"><button type="submit" class="btn btn-sm btn-danger">Borrar</a></form>
+                            </li>
+                            <li>
+                                <a href='/carreras/mostrar/<%= carrera.id %>' class="btn btn-sm btn-info">Ver</a>
+                            </li>
+                        </ul>               
+                    </div> 
+                </div>
+            </div>    
+            <% }) %>
         </div>
     </div>
-  </section>
+</section>
+<% } else { %>
+    <section class="latest_news_2" id="latest_news_style_2">
+        <div class="container">
+            <center><strong>No tienes permisos suficientes para visualizar esta página.</strong></center>
+        </div>
+    </section>
+<% } %>
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
 
-  <script src="/public/vendor/jquery/jquery.min.js"></script>
-  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script> 
-  <!-- <script src="js/scrolling-nav.js"></script>  -->
-
-</body>
-
-</html>
+<%- include('../archivos/footer') %>

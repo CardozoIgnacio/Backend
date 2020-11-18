@@ -1,51 +1,79 @@
-<%- include('../archivos/cabecera') %> 
+<%- include('../archivos/cabecera', { usuario: usuario }) %> 
+<br>
+<br>
+<section class="blog_wrapper">
+  <div class="container">  
+      <div class="row">        
+          <div class="col-12 col-sm-12 col-md-8 col-lg-8">
 
-<style>
-    table, th, td {
-        border: 1px solid black;
-    }
-</style>
+            <% noticias.forEach(noticia => { %>
+              <% if(noticia.visibilidad) { %>
+              <div class="single_blog">
+                  <div class="blog_banner">
+                      <a href="#" title=""><img src="../public/uploads/<%= noticia.tituloNoticia %>/0.jpeg" alt="" class="img-fluid" width="698" height="371"></a>
+                  </div>
+                  <div class="post_content_wrapper">
+                      <div class="post_date"><p>Publicado en: Fecha - <span>Categoría</span></p></div>
+                      <h3><a href="./mostrar/<%= noticia.idNoticia %>/" title=""><%= noticia.tituloNoticia %></a></h3>
+                      <!-- //TODO: Mostrar solo una parte del contenido. -->
+                      <p><%= noticia.cuerpoNoticia %> </p>
+                      <div class="post_by d-flex justify-content-between">
+                          <a href="./mostrar/<%= noticia.idNoticia %>/" title="">Leer más <i class="flaticon-login-button"></i></a>
+                          <div class="social_wrapper d-flex">
+                              <span>Compartir: </span>
+                              <ul class="social-items d-flex list-unstyled">
+                                  <li><a href="#"><i class="fab fa-facebook-f fb_icon"></i></a></li>
+                                  <li><a href="#"><i class="fab fa-twitter tw_icon"></i></a></li>
+                                  <li><a href="#"><i class="fab fa-linkedin-in link_icon"></i></a></li>
+                              </ul>   
+                          </div>
+                      </div>
+                      <ul class="post_bloger">
+                          <li>Publicado por: Administración</li> 
+                      </ul>               
+                  </div>
+              </div>        
+              <% } %>
+            <% }) %>      
 
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-              <a href="/noticias/crearNoticia">Crear nueva noticia</a>
-              <br>
-              <% noticias.forEach(noticia => { %>
-                <br>
-                <% if(noticia.visibilidad) { %>
-                  <!-- Hay que buscar la manera de que detecte cualquier extensión de imágen (jpg, jpeg, png)-->
-                  <img src="../public/uploads/<%= noticia.tituloNoticia %>/0.jpeg">
-                  <h2><a href="./mostrar/<%= noticia.idNoticia %>/"><%= noticia.tituloNoticia %></a></h2>
-                  <br>
-                  <p><%= noticia.cuerpoNoticia %> </p>
-                  <br>
-                  <!-- Acá se deberá comprobar si el usuario tiene privilegios suficientes -->
-                  <button><a href="./<%= noticia.idNoticia %>/actualizar">Actualizar noticia</a></button> <form method="POST" action="./<%= noticia.idNoticia %>/destruir %>"><button type="submit">Eliminar</button></form>
-                  <br>
-                <% } %>
-              <% }) %>
-                <br>
-            </div>
-        </div>
-    </div>
-  </section>
+              <div class="pagination_blog">
+                  <ul>
+                      <li><a href="#">1</a></li>
+                      <li class="current"><a href="#">2</a></li>
+                      <li><a href="#" class=""><i class='flaticon-right-arrow'></i></a></li>
+                  </ul>
+              </div>            
+          </div> <!-- End Blog Right Side--->
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 blog_wrapper_right ">
+              <div class="blog-right-items">
+                  <div class="popular_tags widget_single">
+                      <div class="items-title">
+                          <h3 class="title">Categorías</h3>
+                      </div>
+                      <div class="tags-items">
+                          <ul class="list-unstyled">
+                              <li><a href="#" title="">Analista de Sistemas</a></li>
+                              <li><a href="#" title="">Administración de Pymes</a></li>
+                              <li><a href="#" title="">Seguridad e Higiene</a></li>
+                              <li><a href="#" title="">Automatización y Control</a></li>
+                              <li><a href="#" title="">I.S.F.T nº 190</a></li>
+                              <li><a href="#" title="">Dirección</a></li>
+                          </ul>
+                      </div>
+                  </div>  
 
-  <script src="/public/vendor/jquery/jquery.min.js"></script>
-  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+                  <div class="twitter_post_wrapper widget_single">
+                      <div class="items-title">
+                          <h3 class="title">Publicaciones de Facebook</h3>
+                      </div>
+                      <p>Acá se podría poner el widget ofrecido por facebook para ver las publicaciones de la página</p>
+                  </div>
+              </div>
+          </div><!-- ./ End  Blog Right Wrapper-->
+          
+      </div>
+  </div> 
+</section><!-- ./ End  Blog Wrapper-->
 
-  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script> 
-  <!-- <script src="js/scrolling-nav.js"></script>  -->
-
-</body>
-
-</html>
+<%- include('../archivos/footer') %> 

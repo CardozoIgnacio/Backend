@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Instituto Superior de Formación Técnica Nº 190</title>
-    <link rel="shortcut icon" href="/public/images/favicon.ico" type="image/x-icon">
+    <!-- <link rel="shortcut icon" href="/public/images/favicon.ico" type="image/x-icon"> -->
     <!-- Goole Font -->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,500,700" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet"> 
@@ -57,6 +57,12 @@
                                 <li><i class="flaticon-mail-black-envelope-symbol"></i>isft190estudiantes@gmail.com</li>
         					</ul>                    
                         </div>
+                        <div class="float-right">
+                            <% if (usuario) { %>
+                                <span style="color: #fff;">Bienvenido, <b><%= usuario.nombre %> <%= usuario.apellido %></b></span>
+                                &nbsp; <a href="/perfil" class="btn-panel">Panel de control</a>
+                            <% } %>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -66,19 +72,20 @@
     <div class="edu_nav">
         <div class="container">
             <nav class="navbar navbar-expand-md navbar-light bg-faded">
-                <a class="navbar-brand" href="index.html"><img src="http://isft190.com.ar/images/logo.png" width="150" height="100" alt="logo"></a>
+                <a class="navbar-brand" href="localhost:3000"><img src="http://isft190.com.ar/images/logo.png" width="150" height="100" alt="logo"></a>
                 <div class="collapse navbar-collapse main-menu" id="navbarSupportedContent">
                     <ul class="navbar-nav nav lavalamp ml-auto menu">
-                        <li class="nav-item"><a href="#" class="nav-link active">Inicio</a></li>
-                        <li class="nav-item"><a href="about.html" class="nav-link">Conocenos</a>
+                        <li class="nav-item"><a href="localhost:3000" class="nav-link active">Inicio</a></li>
+                        <li class="nav-item"><a href="/conocenos" class="nav-link">Conocenos</a>
                             <ul class="navbar-nav nav mx-auto">
-                                <li class="nav-item"><a href="course.html" class="nav-link">Nuestra historia</a></li>
-                                <li class="nav-item"><a href="course-details.html" class="nav-link">Preguntas frecuentes</a></li>
+                                <li class="nav-item"><a href="/historia" class="nav-link">Nuestra historia</a></li>
+                                <li class="nav-item"><a href="/preguntas" class="nav-link">Preguntas frecuentes</a></li>
                             </ul> 
                         </li>
-                        <li class="nav-item"><a href="course.html" class="nav-link">Noticias y eventos</a></li>
-                        <li class="nav-item"><a href="course.html" class="nav-link">Moodle</a></li>
-                        <li class="nav-item"><a href="contact.html" class="nav-link">Contacto</a></li>
+                        <li class="nav-item"><a href="/noticias" class="nav-link">Noticias y eventos</a></li>
+                        <li class="nav-item"><a href="/moodle" class="nav-link">Moodle</a></li>
+                        <li class="nav-item"><a href="/login" class="nav-link">Ingresar</a></li>
+                        <li class="nav-item"><a href="/contacto" class="nav-link">Contacto</a></li>
                     </ul>
                 </div>
                 <div class="mr-auto search_area ">

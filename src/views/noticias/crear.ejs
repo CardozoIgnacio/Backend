@@ -1,48 +1,41 @@
-<%- include('../archivos/cabecera') %> 
+<%- include('../archivos/cabecera', { usuario: usuario }) %> 
 
-<section>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-              <center><h3>Publicar nueva noticia</h3></center>
-              <form action="" method="POST" enctype="multipart/form-data">
-                    <div class="form-group">
-                      <label for="nombre">Título de la noticia</label>
-                      <input type="text" class="form-control" name="tituloNoticia" id="tituloNoticia" placeholder="Ingresar título de la noticia">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                      <label for="cuerpoNoticia">Contenido de la noticia</label>
-                      <textarea class="form-control" name="cuerpoNoticia" id="cuerpoNoticia" rows="3"></textarea>
-                    </div> 
-                    <br>
-                    <div class="form-control">
-                      <label for="fotos">Seleccionar fotos</label>
-                      <input type="file" class="form-control" name="fotos" id="fotos" multiple="multilple" required>
-                    </div>
-                    <br>
-                    <br>
-                    <button type="submit" class="btn btn-success float-right">Crear noticia</button>
-              </form>
-            </div>
+<section class="become_a_instructor">
+  <div class="col-sm-10 col-md-4 col-lg-4" style="margin: 0 auto">
+    <!-- TODO: SERÍA CONVENIENTE CAMBIARLE LOS NOMBRES A LAS CLASES -->
+    <div class="apply_instructor">
+        <div class="form_title">
+            <h3>Crear noticia</h3>
         </div>
+        <form action="" method="POST" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">Título de la noticia</label>
+                        <input type="text" class="form-control"  placeholder="" name="tituloNoticia" id="tituloNoticia">
+                    </div>
+                </div>                            
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">Contenido de la noticia</label>
+                        <textarea class="form-control" name="cuerpoNoticia" id="cuerpoNoticia" placeholder=""></textarea> 
+                    </div>
+                </div>
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                  <div class="form-group">
+                    <label class="control-label">Adjuntar fotografías</label>
+                    <input type="file" class="form-control" name="fotos" id="fotos" multiple="multilple" required>
+                  </div>
+                </div>
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <button type="submit" class="btn btn-default submit_btn">Crear</button>
+                </div> 
+            </div>
+        </form>
     </div>
+  </div>
+
 </section>
 
-  <!-- Footer -->
-  <footer class="py-5 bg-dark">
-    <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>
-    </div>
-    <!-- /.container -->
-  </footer>
 
-  <script src="/public/vendor/jquery/jquery.min.js"></script>
-  <script src="/public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-  <script src="/public/vendor/jquery-easing/jquery.easing.min.js"></script> 
-  <!-- <script src="js/scrolling-nav.js"></script>  -->
-
-</body>
-
-</html>
+<%- include('../archivos/footer') %> 
