@@ -1,0 +1,60 @@
+<%- include('./archivos/cabecera', { usuario: usuario }) %> 
+
+<br>
+<br>
+
+<% if (!usuario) { %> 
+  <center><h3>Necesitas iniciar sesión para ver tu perfil.</h3></center>
+<% } else { %><section class="teachers_profile">
+  <div class="container">
+      <div class="row">
+          <div class="col-sm-4 teacher-detail-left">
+            <div class="teacher-info"> 
+                <ul class="list-unstyled">
+                    <li>
+                        <h3>Nombre de usuario :</h3>
+                        <span><%= usuario.usuario %></span>
+                    </li>
+                    <li>
+                        <h3>Nombre completo :</h3>
+                        <span><%= usuario.nombre %> <%= usuario.apellido %></span>
+                    </li>
+                    <li>
+                        <h3>Rol :</h3>
+                        <span>Administrador</span>
+                    </li>
+                </ul>
+            </div>
+          </div>
+          <div class="col-sm-8 teacher-detail-right">
+              <div class="row">
+                  <div class="col-sm-6">
+                    <center><h3>Acciones</h3>
+                    <br>
+                    <a href="" class="btn btn-sm btn-dark">Panel de control noticias</a>
+                    <br><br>
+                    <a href="" class="btn btn-sm btn-dark">Panel de control carreras</a>
+                    </center>
+                  </div>
+                  <div class="col-sm-6">
+                      <div class="teacher-contact">
+                          <h2>Contactar</h2>
+                          <form action="#">
+                              <center><b><%= usuario.nombre %> <%= usuario.apellido %></b></center>
+                              <br>
+                              <input type="email" placeholder="Email*" required>
+                              <textarea>Mensaje</textarea>
+                              <button type="submit">Enviar solicitud</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div><!-- Ends: .teacher-detail-right -->
+      </div>
+  </div>
+</section><!-- Ends: .teacher-details-wrapper -->
+<% } %>
+
+<br>
+<br>
+<%- include('./archivos/footer') %> 
