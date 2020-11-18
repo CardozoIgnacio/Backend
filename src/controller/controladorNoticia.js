@@ -8,7 +8,7 @@ exports.listarNoticias_get = async function (req, res) {
 	try { 
 		await Noticia.findAll({})
 			.then(noticias => {
-				res.render('noticias/listar', { noticias: noticias });
+				res.render('noticias/listar', { noticias: noticias, usuario: req.user });
 			})
 			.catch(error => console.log(error));
 	}
@@ -74,7 +74,7 @@ exports.actualizarNoticia_get = async function (req, res) {
       let idNoticia = req.params.idNoticia; 
       await Noticia.findAll({ where: { idNoticia } })
           .then(respuesta => { 
-              res.render('noticias/actualizar', { noticia: respuesta[0] }); 
+              res.render('noticias/actualizar', { noticia: respuesta[0], usuario: req.user }); 
           })
           .catch(error => {
               //TODO: Renderizar una vista de error 
@@ -118,10 +118,10 @@ exports.encontrarNoticia_get = async function (req, res) {
               //TODO: garantizar que sean imagenes
               //TODO: optar por usar base de datos fotos?
               fs.readdir(path.join('public', 'uploads', respuesta[0].tituloNoticia), (err, fotos) => {
-                res.render('noticias/noticia', { noticia: respuesta[0], fotos: fotos });
+                res.render('noticias/noticia', { noticia: respuesta[0], fotos: fotos, usuario: req.user });
 
                 if(err) { 
-                  res.render('noticias/noticia', { noticia: respuesta[0] });
+                  res.render('noticias/noticia', { noticia: respuesta[0], usuario: req.user });
                 }
               })
           })
