@@ -80,7 +80,17 @@ body {
   font-weight: 400;
   font-family: "Poppins", sans-serif;
   color: #607079;
-  overflow-x: hidden !important; }
+  overflow-x: hidden !important; 
+}
+
+.btn-panel { 
+  background: #242423;
+  height: 54px;
+  line-height: 54px;
+  color: #fff;
+  padding: 0 20px;
+  font-weight: 600;
+}
 
 p {
   font-weight: 400;
@@ -120,7 +130,7 @@ ol li,
 ul li {
   list-style: outside none none;
   list-style-type: none; }
-
+  
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -196,7 +206,6 @@ select {
     font-size: 24px; }
   .owl-buttons .owl-prev:hover i:before, .owl-buttons .owl-next:hover i:before {
     opacity: 1; }
-
 /*=======[ Preloader Style ]========*/
 div#preloader {
   position: fixed;
@@ -1926,7 +1935,7 @@ footer {
   z-index: 9;
   width: 100%; }
   .header_tow .edu_nav nav .navbar-nav li a {
-    color: #ffffff !important; }
+    color: #393E41 !important; }
     .header_tow .edu_nav nav .navbar-nav li a.active, .header_tow .edu_nav nav .navbar-nav li a:hover {
       color: #00296b !important; }
   .header_tow .edu_nav nav .navbar-nav li ul li a {
