@@ -1,68 +1,66 @@
 <%- include('../archivos/cabecera', { usuario: usuario }) %> 
 <br>
 <br>
-<section class="blog_wrapper">
-  <div class="container">  
-      <div class="row">        
-          <div class="col-12 col-sm-12 col-md-8 col-lg-8">
 
+<style>
+
+.item{color:#48453d; margin-top:30px; overflow:hidden;}
+.block-title{color: #48453d; margin-bottom:0px; font-size:18px; margin-top: 0px; font-weight:700; text-transform:uppercase;}
+.item-content-block{padding:20px; border-top:2px solid #f6f6f2; background-color:#FFF; display:block;}
+.tags a{background-color:#756f5d; padding:10px; color:#fff; display:inline-block; font-size:14px; text-transform:uppercase; line-height:11px; border-radius:2px; margin-bottom:5px; margin-right:2px; text-decoration:none;}
+.tags a:hover{background-color:#a38018;}
+
+
+</style>
+
+
+
+
+<section class="latest_news_2" id="latest_news_style_2">
+    <div class="container">
+        <br>
+        <% if (usuario) { %>
+            <center><a href="./crearNoticia" class="btn btn-sm btn-primary">Publicar nueva noticia</a></center>
+        <% } %>
+        <div class="item">
+            <div class="item-content-block">
+                <div class="block-title">Categorías</div>
+            </div>
+            <div class="item-content-block tags">
+                <a href="#">I.S.F.T nº 190</a> <a href="#">Mesas de exámen</a> <a href="#">Dirección</a> <a href="#">Análisis de Sistemas</a> <a href="#">Administración de PyMEs</a> <a href="#">Automatización y Control</a> <a href="#">Seguridad e Higiene</a> 
+            </div>
+        </div>
+        <br>        
+        <div class="row">            
             <% noticias.forEach(noticia => { %>
               <% if(noticia.visibilidad) { %>
-              <div class="single_blog">
-                  <div class="blog_banner">
-                      <a href="#" title=""><img src="../public/uploads/<%= noticia.tituloNoticia %>/0.jpeg" alt="" class="img-fluid" width="698" height="371"></a>
-                  </div>
-                  <div class="post_content_wrapper">
-                      <div class="post_date"><p>Publicado en: Fecha - <span>Categoría</span></p></div>
-                      <h3><a href="./mostrar/<%= noticia.idNoticia %>/" title=""><%= noticia.tituloNoticia %></a></h3>
-                      <!-- //TODO: Mostrar solo una parte del contenido. -->
-                      <p><%= noticia.cuerpoNoticia %> </p>
-                      <div class="post_by d-flex justify-content-between">
-                          <a href="./mostrar/<%= noticia.idNoticia %>/" title="">Leer más <i class="flaticon-login-button"></i></a>
-                          <div class="social_wrapper d-flex">
-                              <span>Compartir: </span>
-                              <ul class="social-items d-flex list-unstyled">
-                                  <li><a href="#"><i class="fab fa-facebook-f fb_icon"></i></a></li>
-                                  <li><a href="#"><i class="fab fa-twitter tw_icon"></i></a></li>
-                                  <li><a href="#"><i class="fab fa-linkedin-in link_icon"></i></a></li>
-                              </ul>   
-                          </div>
-                      </div>
-                      <ul class="post_bloger">
-                          <li>Publicado por: Administración</li> 
-                      </ul>               
-                  </div>
-              </div>        
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                    <div class="single_item">
+                       <div class="item_wrapper">
+                           <div class="blog-img">
+                               <a href="./mostrar/<%= noticia.idNoticia %>" title=""><img src="../public/uploads/<%= noticia.tituloNoticia %>/miniaturas/0.jpg" alt="" class="img-fluid"></a>
+                           </div>
+                           <h3><a href="./mostrar/<%= noticia.idNoticia %>" title=""><%= noticia.tituloNoticia %></a></h3> 
+                       </div>
+                       <div class="blog_title">
+                           <ul class="post_bloger">
+                               <li><i class="fas fa-user"></i>Administración</li> 
+                               <li><i class="fas fa-clock"></i>19 de Noviembre, 2020</li>
+                               <br>
+                               <% if (usuario) { %>
+                                <li><a href="./<%= noticia.idNoticia %>/actualizar" class="btn btn-sm btn-dark">Actualizar</a></li>
+                                <li><form method="POST" action="./<%= noticia.idNoticia %>/destruir %>"><button type="submit" class="btn btn-sm btn-danger">Eliminar</button></form></li>
+                               <% } %>
+                           </ul>               
+                       </div> 
+                   </div>
+               </div>          
               <% } %>
-            <% }) %>      
-
-              <div class="pagination_blog">
-                  <ul>
-                      <li><a href="#">1</a></li>
-                      <li class="current"><a href="#">2</a></li>
-                      <li><a href="#" class=""><i class='flaticon-right-arrow'></i></a></li>
-                  </ul>
-              </div>            
-          </div> <!-- End Blog Right Side--->
+            <% }) %>              
+          </div> 
 
           <div class="col-12 col-sm-12 col-md-4 col-lg-4 blog_wrapper_right ">
               <div class="blog-right-items">
-                  <div class="popular_tags widget_single">
-                      <div class="items-title">
-                          <h3 class="title">Categorías</h3>
-                      </div>
-                      <div class="tags-items">
-                          <ul class="list-unstyled">
-                              <li><a href="#" title="">Analista de Sistemas</a></li>
-                              <li><a href="#" title="">Administración de Pymes</a></li>
-                              <li><a href="#" title="">Seguridad e Higiene</a></li>
-                              <li><a href="#" title="">Automatización y Control</a></li>
-                              <li><a href="#" title="">I.S.F.T nº 190</a></li>
-                              <li><a href="#" title="">Dirección</a></li>
-                          </ul>
-                      </div>
-                  </div>  
-
                   <div class="twitter_post_wrapper widget_single">
                       <div class="items-title">
                           <h3 class="title">Publicaciones de Facebook</h3>
@@ -70,10 +68,10 @@
                       <p>Acá se podría poner el widget ofrecido por facebook para ver las publicaciones de la página</p>
                   </div>
               </div>
-          </div><!-- ./ End  Blog Right Wrapper-->
+          </div>
           
       </div>
   </div> 
-</section><!-- ./ End  Blog Wrapper-->
+</section>
 
 <%- include('../archivos/footer') %> 
