@@ -1,58 +1,116 @@
 <%- include('./archivos/cabecera', { usuario: usuario }) %> 
 
-<br>
+<style>
+    .box-texto { 
+        background-color: #00296b;
+        border: 2px solid black;
+        padding: 5px;
+        width: 100%;
+    }
+    .box-encabezado {
+        padding: 5px;
+        background-color: #EEEEEE;
+    }
+</style>
+
 <br>
 
 <% if (!usuario) { %> 
   <center><h3>Necesitas iniciar sesión para ver tu perfil.</h3></center>
-<% } else { %><section class="teachers_profile">
+<% } else { %>
+<section class="teachers_profile">
   <div class="container">
+    <center><h4 class="box-encabezado">Panel de control administrativo/estudiantil</h4></center>
+    <br><br><br>
       <div class="row">
-          <div class="col-sm-4 teacher-detail-left">
-            <div class="teacher-info"> 
-                <ul class="list-unstyled">
-                    <li>
-                        <h3>Nombre de usuario :</h3>
-                        <span><%= usuario.usuario %></span>
-                    </li>
-                    <li>
-                        <h3>Nombre completo :</h3>
-                        <span><%= usuario.nombre %> <%= usuario.apellido %></span>
-                    </li>
-                    <li>
-                        <h3>Rol :</h3>
-                        <span>Administrador</span>
-                    </li>
-                </ul>
+          <div class="col-sm-8 teacher-detail-left">
+            <div class="teacher-info">
+                <div class="box-texto">
+                    <h5 style="color: #EEEEEE;"><i class="fas fa-address-card"></i> Datos de usuario</h5>
+                </div> 
+                <br>
+                <center>
+                    <u class="float-left">Nombre de usuario:</u> <span class="float-right"><%= usuario.usuario %> </span>
+                    <br>
+                    <u class="float-left">Nombre completo:</u> <span class="float-right"><%= usuario.nombre %> <%= usuario.apellido %></span>
+                    <br>
+                    <u class="float-left">Rol:</u> <span class="float-right"><%= usuario.rol %></span>
+                    <br>
+                </center>
+                <br>
+                <% if(usuario.rol == "Estudiante") { %>
+                <div class="box-texto">
+                    <h5 style="color: #EEEEEE;"><i class="fas fa-graduation-cap"></i> Menú de acciones estudiantiles</h5>
+                </div>
+                <br>
+                <button type="button" class="btn btn-sm btn-secondary" data-toggle="modal" data-target="#constancia">Solicitar constancia de alumno</button>
+                <button type="button" class="btn btn-sm btn-secondary">Consultar inscripciones a mesas de exámen</button>
+                <button type="button" class="btn btn-sm btn-secondary">Analítico en línea</button>
+                <% } %>
+                <% if(usuario.rol == "Administrador") { %>
+                    <div class="box-texto">
+                        <h5 style="color: #EEEEEE;"><i class="fas fa-graduation-cap"></i> Menú de acciones administrativas</h5>
+                    </div>
+                    <br>
+                    <a href="/usuarios/obtener-listado"><button type="button" class="btn btn-sm btn-secondary">Consultar listado completo de alumnos</button></a>
+                    <a href="/usuarios/consultar-preinscripciones"><button type="button" class="btn btn-sm btn-secondary">Consultar preinscripciones pendientes</button></a>
+                <% } %>
+                <% if(usuario.rol == "Profesor") { %>
+                  <div class="box-texto">
+                    <h5 style="color: #EEEEEE;"><i class="fas fa-graduation-cap"></i> Menú de acciones para docentes</h5>
+                  </div>
+                  <br>
+                  <a href="/usuarios/obtener-listado"><button type="button" class="btn btn-sm btn-secondary">Consultar catedras asignadas</button></a>
+                  <button type="button" class="btn btn-sm btn-secondary">Listado de alumnos</button>
+                  <button type="button" class="btn btn-sm btn-secondary">Acceder al sistema de notas</button>
+                <% } %>
             </div>
           </div>
-          <div class="col-sm-8 teacher-detail-right">
-              <div class="row">
-                  <div class="col-sm-6">
-                    <center><h3>Acciones</h3>
-                    <br>
-                    <a href="" class="btn btn-sm btn-dark">Panel de control noticias</a>
-                    <br><br>
-                    <a href="" class="btn btn-sm btn-dark">Panel de control carreras</a>
-                    </center>
-                  </div>
-                  <div class="col-sm-6">
-                      <div class="teacher-contact">
-                          <h2>Contactar</h2>
-                          <form action="#">
-                              <center><b><%= usuario.nombre %> <%= usuario.apellido %></b></center>
-                              <br>
-                              <input type="email" placeholder="Email*" required>
-                              <textarea>Mensaje</textarea>
-                              <button type="submit">Enviar solicitud</button>
-                          </form>
-                      </div>
-                  </div>
-              </div>
-          </div><!-- Ends: .teacher-detail-right -->
+          <div class="col-sm-4 teacher-detail-right">
+                <div class="teacher-contact">
+                    <h2>Contactar</h2>
+                    <form action="#">
+                        <center><b><%= usuario.nombre %> <%= usuario.apellido %></b></center>
+                        <br>
+                        <input type="email" placeholder="Email*" required>
+                        <textarea>Mensaje</textarea>
+                        <button type="submit">Enviar solicitud</button>
+                    </form>
+                </div>
+            </div>
+          </div>
       </div>
   </div>
-</section><!-- Ends: .teacher-details-wrapper -->
+</section>
+
+
+<div class="modal fade" id="constancia" tabindex="-1" role="dialog" aria-labelledby="constancia" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="constanciaLabel">Generar constancia de alumno</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+              <label for="selectConstancia">A ser presentado a:</label>
+              <select class="form-control" id="selectConstancia">
+                <option>Autoridades IOSFA</option>
+                <option>Ámbito laboral</option>
+                <option>Ámbito educativo</option>
+                <option>Sin especificar</option>
+              </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+          <a href="/usuarios/constancia-alumno"><button type="button" class="btn btn-primary">Generar</button></a>
+        </div>
+      </div>
+    </div>
+</div>
 <% } %>
 
 <br>
