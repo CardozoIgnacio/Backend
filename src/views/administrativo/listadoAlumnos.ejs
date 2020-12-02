@@ -1,0 +1,99 @@
+<%- include('../archivos/cabecera', { usuario: usuario }) %> 
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  #campo {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  
+  #tablaUsuarios {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+  }
+  
+  #tablaUsuarios th, #tablaUsuarios td {
+    text-align: left;
+    padding: 12px;
+  }
+  
+  #tablaUsuarios tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #tablaUsuarios tr.header, #tablaUsuarios tr:hover {
+    background-color: #f1f1f1;
+  }
+</style>
+
+<section class="seccion">
+  <div class="container">
+    <% if(usuario) { %>
+      <% if(usuario.rol != "Administrador") { %> 
+        <center><h3>Usted no dispone de privilegios suficientes para visualizar esta página.</h3></center>
+      <% } else { %>
+        <center>
+          <h3>Buscar usuario</h3>
+          <small>* La búsqueda puede ser tanto para el ID, como para el nombre de usuario, nombre completo o rol.</small>
+        </center>
+        <br>
+          <input type="text" id="campo" onkeyup="buscar()" placeholder="Buscar..." title="Ingrese un nombre">
+
+          <table id="tablaUsuarios">
+            <tr class="header">
+              <th>ID</th>
+              <th>Nombre de usuario</th>
+              <th>Nombre completo</th>
+              <th>Rol</th>
+            </tr>
+              <% listado.forEach(alumno => { %>
+                <tr>
+                  <td><%= alumno.id %></td>
+                  <td><%= alumno.usuario %></td>
+                  <td><%= alumno.nombre %> <%= alumno.apellido %></td>
+                  <td><%= alumno.rol %></td>
+                </tr>
+              <% }) %>
+          </table>
+      <% } %>
+    <% } else { %>
+      <center><h3>Usted no dispone de privilegios suficientes para visualizar esta página.</h3></center>
+    <% } %>
+  </div>
+</section>
+
+<script>
+  function buscar() {
+    var input, filter, table, tr, td, cell, i, j;
+  input = document.getElementById("campo");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tablaUsuarios");
+  tr = table.getElementsByTagName("tr");
+  for (i = 1; i < tr.length; i++) {
+    tr[i].style.display = "none";
+    td = tr[i].getElementsByTagName("td");
+    for (var j = 0; j < td.length; j++) {
+      cell = tr[i].getElementsByTagName("td")[j];
+      if (cell) {
+        if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          break;
+        } 
+      }
+    }
+  }
+}
+  </script>  
+
+<%- include('../archivos/footer') %> 
