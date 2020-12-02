@@ -92,6 +92,10 @@ body {
   font-weight: 600;
 }
 
+.seccion { 
+  padding: 130px 0 50px;
+}
+
 p {
   font-weight: 400;
   line-height: 26px;
@@ -130,7 +134,7 @@ ol li,
 ul li {
   list-style: outside none none;
   list-style-type: none; }
-  
+
 select {
   -webkit-appearance: none;
   -moz-appearance: none;
