@@ -1,0 +1,95 @@
+<%- include('./archivos/cabecera', { usuario: usuario }) %> 
+
+<section class="become_a_instructor">
+  <div class="container">
+    <% if(usuario) { %> 
+      <center><span>Usted ya está inscripto en el sistema.</span></center>
+    <% } else { %> 
+      <% if(error) { %>
+        <br>
+        <div class="alert alert-warning" role="alert">
+          Ocurrió un error en el procesamiento de la pre-inscripción. Por favor, vuelva a intentar y de repetirse el error, contactar a la administración del Instituto.
+        </div>
+      <% } %>
+      <% if(error === false) { %>
+        <br>
+        <div class="alert alert-success" role="alert">
+          Preinscripción enviada con <b>éxito</b>. <br> Recordar presentar de manera presencial: <br>
+          - Foto carnet 4x4; <br>
+          - Analítico de título secundario; <br>
+          - Certificado de buena salud; <br>
+          - Fotocopia del DNI. 
+        </div>
+      <% } %>
+      <br>
+      <br>
+      <div class="apply_instructor">
+        <div class="form_title">
+            <h3>Pre-inscripción</h3>
+        </div>
+        <form action="" method="POST">
+            <div class="row">
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">Nombre</label>
+                        <input type="text" class="form-control"  placeholder="" name="nombreInscripto" id="nombreInscripto" required>
+                    </div>
+                </div> 
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">Apellido</label>
+                        <input type="text" class="form-control"  placeholder="" name="apellidoInscripto" id="apellidoInscripto" required> 
+                    </div>
+                </div> 
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">D.N.I</label>
+                        <input type="text" class="form-control"  placeholder="" name="dniInscripto" id="dniInscripto" required>
+                    </div>
+                </div>    
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">Correo electrónico</label>
+                        <input type="email" class="form-control"  placeholder="" name="emailInscripto" id="emailInscripto" required>
+                    </div>
+                </div> 
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">Fecha de nacimiento</label>
+                        <input type="date" class="form-control"  placeholder="" name="nacimientoInscripto" id="nacimientoInscripto" required>
+                    </div>
+                </div> 
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">Dirección</label>
+                        <input type="text" class="form-control"  placeholder="" name="domicilioInscripto" id="domicilioInscripto" required>
+                    </div>
+                </div> 
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label class="control-label">Número de teléfono</label>
+                        <input type="text" class="form-control"  placeholder="" name="telefonoInscripto" id="telefonoInscripto" onkeypress="return esNumerico(event)" onpaste="return false;" required>
+                    </div>
+                </div>           
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <button type="submit" class="btn btn-primary submit_btn">Enviar preinscripción</button>
+                </div> 
+            </div>
+        </form>
+    </div>     
+    <% } %>
+  </div>
+</section>
+
+<script type="text/javascript">     
+  function esNumerico(evt) {
+          evt = (evt) ? evt : window.event;
+          var charCode = (evt.which) ? evt.which : evt.keyCode;
+          if ( (charCode > 31 && charCode < 48) || charCode > 57) {
+              return false;
+          }
+          return true;
+      }
+  </script>
+
+<%- include('./archivos/footer') %> 
