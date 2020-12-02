@@ -8,7 +8,7 @@
             <h3>Añadir nueva carrera</h3>
             <center><small>Atención: la carrera será automáticamente agregada al inicio de la página, por lo tanto, será visible.</small></center>
         </div>
-        <form action="/carreras/" method="POST">
+        <form action="/carreras/" method="POST" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-12 col-lg-12 col-md-12 col-lg-12">
                     <div class="form-group">
@@ -69,7 +69,13 @@
                         <option>Virtual</option>
                     </select>
                   </div>
-                </div>       
+                </div> 
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="miniatura">Imágen miniatura</label>
+                        <input type="file" class="form-control" name="miniatura" id="miniatura" required>
+                    </div>
+                </div>      
                 <div class="col-12 col-lg-12 col-md-12 col-lg-12">
                     <button type="submit" class="btn btn-default submit_btn">Crear</button>
                 </div> 
