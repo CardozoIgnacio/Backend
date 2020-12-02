@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Usuario.hasMany(models.Tramite,{as:"idUsuario",foreignKey:"id"})
     }
     async comparePasswords(password, callback) {
       try {
@@ -23,10 +24,18 @@ module.exports = (sequelize, DataTypes) => {
   }
   Usuario.init(
     {
+      id:{
+        allowNull:false,
+        type:DataTypes.INTEGER,
+        autoIncrement:true,
+        primaryKey:true
+
+      },
       usuario: DataTypes.STRING,
       nombre: DataTypes.STRING,
       apellido: DataTypes.STRING,
       password: DataTypes.STRING,
+      
     },
     {
       sequelize,

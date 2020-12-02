@@ -11,6 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Tramite.belongsTo(models.Usuario)
     }
   };
   Tramite.init({
@@ -25,7 +26,8 @@ module.exports = (sequelize, DataTypes) => {
     fechaInicio: DataTypes.DATE,
     estado: DataTypes.BOOLEAN,
     fechaFinalizacion: DataTypes.DATE,
-    token:DataTypes.STRING
+    token:DataTypes.STRING,
+    idUsuario:DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Tramite',
