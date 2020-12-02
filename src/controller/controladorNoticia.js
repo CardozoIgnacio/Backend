@@ -1,6 +1,7 @@
 var fs = require("fs");
 var mkdirp = require("mkdirp");
 var path = require("path");
+var sharp = require("sharp");
 var { Noticia } = require("../model/index");
 
 exports.listarNoticias_get = async function (req, res) {
@@ -18,7 +19,7 @@ exports.listarNoticias_get = async function (req, res) {
 }
 
 exports.crearNoticia_get = async function (req, res) {
-  res.render('noticias/crear');
+  res.render('noticias/crear', { usuario: req.user });
 };
 
 exports.crearNoticia_post = async function (req, res) {
@@ -26,21 +27,37 @@ exports.crearNoticia_post = async function (req, res) {
   //TODO: Recuperar informacion del body respecto a los usuarios
   let noticia = {}
   try {
+    // poner las imagenes a (370x230)px
     await mkdirp(`public/uploads/${req.body.tituloNoticia}`).then(resultado => console.log("Carpeta creada: ", resultado));
+    await mkdirp(`public/uploads/${req.body.tituloNoticia}/miniaturas`).then(resultado => console.log("Carpeta de miniaturas creada: ", resultado));
+
     let contador = 0; 
-    req.files.forEach(function (foto) {
-      fs.copyFile(foto.path, path.join('public', 'uploads', req.body.tituloNoticia, `${contador}.${foto['mimetype'].split('/')[1]}`), (err) => {
+    
+    req.files.forEach(async function (foto) {
+      await sharp(foto.path)
+      .resize(370, 230, {fit: 'contain'})
+      .jpeg({quality: 90})
+      .toFile(
+          path.join('public', 'uploads', req.body.tituloNoticia, 'miniaturas', `${contador}.jpg`), function(err) {
+            if(err) { 
+              console.log("Falló al crear las imágenes miniaturas: ", err);
+            }
+          }
+      )
+      fs.copyFile(foto.path, path.join('public', 'uploads', req.body.tituloNoticia, `${contador}.jpg`), (err) => {
         if(err) { 
           console.log("Error al copiar archivo: ", err);
         } else { 
           // significa que la copia fue exitosa, por ende borramos el archivo original
-          fs.unlink(foto.path, (err) => {
-            if(err) { 
-              console.log("Ocurrió un error al borrar la foto original de una noticia creada, deberá realizarse manualmente.");
-            } else { 
-              console.log("Foto borrada");
-            }
-          });
+          //TODO: solucionar
+          // fs.unlink(foto.path, (err) => {
+          //   if(err) { 
+          //     console.log("Ocurrió un error al borrar la foto original de una noticia creada, deberá realizarse manualmente.");
+          //   } else { 
+          //     console.log("Foto borrada");
+          //   }
+          // });
+          console.log("foto subida");
         }    
       }
     )
