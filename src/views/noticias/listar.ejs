@@ -20,7 +20,9 @@
     <div class="container">
         <br>
         <% if (usuario) { %>
+            <% if (usuario.rol == "Administrador") { %>
             <center><a href="./crearNoticia" class="btn btn-sm btn-primary">Publicar nueva noticia</a></center>
+            <% } %>
         <% } %>
         <div class="item">
             <div class="item-content-block">
@@ -48,8 +50,10 @@
                                <li><i class="fas fa-clock"></i>19 de Noviembre, 2020</li>
                                <br>
                                <% if (usuario) { %>
+                                <% if (usuario.rol == "Administrador") { %>
                                 <li><a href="./<%= noticia.idNoticia %>/actualizar" class="btn btn-sm btn-dark">Actualizar</a></li>
                                 <li><form method="POST" action="./<%= noticia.idNoticia %>/destruir %>"><button type="submit" class="btn btn-sm btn-danger">Eliminar</button></form></li>
+                                <% } %>
                                <% } %>
                            </ul>               
                        </div> 
