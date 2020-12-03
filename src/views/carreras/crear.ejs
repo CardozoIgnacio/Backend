@@ -3,6 +3,7 @@
 <section class="become_a_instructor">
   <div class="col-sm-10 col-md-4 col-lg-4" style="margin: 0 auto">
     <!-- TODO: SERÍA CONVENIENTE CAMBIARLE LOS NOMBRES A LAS CLASES -->
+    <!-- TODO: Crear restricción de roles, que solo pueda entrar a esta parte el administrador (son dos lineas de IF) -->
     <div class="apply_instructor">
         <div class="form_title">
             <h3>Añadir nueva carrera</h3>
@@ -74,6 +75,12 @@
                     <div class="form-group">
                         <label for="miniatura">Imágen miniatura</label>
                         <input type="file" class="form-control" name="miniatura" id="miniatura" required>
+                    </div>
+                </div> 
+                <div class="col-12 col-lg-12 col-md-12 col-lg-12">
+                    <div class="form-group">
+                        <label for="informativa">Agregar imágen informativa</label>
+                        <input type="file" class="form-control" name="informativa" id="informativa">
                     </div>
                 </div>      
                 <div class="col-12 col-lg-12 col-md-12 col-lg-12">
