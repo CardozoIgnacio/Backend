@@ -49,7 +49,7 @@
         <br>
           <input type="text" id="campo" onkeyup="buscar()" placeholder="Buscar..." title="Ingrese un filtro">
 
-          <table id="tablaUsuarios">
+          <table id="tablaUsuarios" class="table-responsive">
             <tr class="header">
               <th>Nº Preinscripción</th>
               <th>Nombre</th>
@@ -71,10 +71,11 @@
                   <td><%= alumno.fechaNac %></td>
                   <td><%= alumno.email %></td>
                   <td><%= alumno.direccion %></td>
+                  <td><%= alumno.numTelefono %> </td>
                   <td>No</td>
                   <td>No</td>
                   <td>No</td>
-                  <td><button class="btn btn-sm btn-success"><i class="fas fa-check"></i> Confirmar</button><br><br><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editar"><i class="fas fa-edit"></i> Editar</button><br><br><button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i>Borrar </button></td>
+                  <td><button class="btn btn-sm btn-success"><i class="fas fa-check"></i> Confirmar</button><br><br><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editar"><i class="fas fa-edit"></i> Editar</button><br><br><button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Borrar</button></td>
                 </tr>
               <% }) %>
           </table>
@@ -126,8 +127,8 @@
 </div>
 
 <script>
-  function buscar() {
-    var input, filter, table, tr, td, cell, i, j;
+function buscar() {
+  var input, filter, table, tr, td, cell, i, j;
   input = document.getElementById("campo");
   filter = input.value.toUpperCase();
   table = document.getElementById("tablaUsuarios");
