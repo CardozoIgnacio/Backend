@@ -37,6 +37,18 @@ router.get('/', async function(req, res, next) {
   res.render('index', { carreras: obj_carreras, noticias: obj_noticias, usuario: req.user });
 });
 
+router.get('/contacto', function(req, res, next) {
+  res.render('contacto', { usuario: req.user });
+});
+
+router.get('/sobre-nosotros', function(req, res, next) { 
+  res.render('sobre-nosotros', { usuario: req.user });
+});
+
+router.get('/preguntas-frecuentes', function(req, res, next) {
+  res.render('preguntas-frecuentes', { usuario: req.user });
+});
+
 router.get('/login', function(req, res, next) {
   res.render('login', { usuario: req.user });
 });
@@ -54,7 +66,7 @@ router.get('/perfil', function(req, res, next) {
 
  router.post('/login', passport.authenticate('local', {
     successRedirect: "/",
-    failureRedirect: "/login?result=failure"
+    failureRedirect: "/login?valido=no"
 }));
 
 module.exports = router;
