@@ -62,7 +62,7 @@ exports.crearCarrera_post = async function(req, res) {
     let carrera = {}
 
     // creación de la carpeta que almacena la miniatura
-    try { 
+    try {
         await mkdirp(`public/carreras/${req.body.nombreAbreviado}`).then(resultado => console.log("Carpeta de almacenamiento (para carreras) creada: ", resultado));
 
         await sharp(req.file.path)
