@@ -33,18 +33,22 @@
                 <h5><b>Modalidad</b></h5>
                 <%= datos.modalidad %>
                 <br>
-                <h5><b>Validada</b></h5>
+                <h5><b>Activa</b></h5>
                 <% if (datos.validada) { %>
                     <p>Sí</p>
                 <% } else { %>
-                    <p>No</p>
+                    <p>Sí</p>
                 <% } %>
             </div>
         </div>
         <br>
         <br>
+        <% if(usuario) { %>
+            <% if(!usuario.rol == "Administrador") { %>
         <a href="/carreras/<%= datos.id %>/actualizar" class="btn btn-lg btn-dark float-left">Modificar</a>
         <form action="/carreras/<%= datos.id %>/destruir" method="POST"><button type="submit" class="btn btn-lg btn-danger float-left" style="margin-left: 8px;">Borrar</a></form>
+            <% } %>
+        <% } %>
     </div>
 </section>
 <br>
