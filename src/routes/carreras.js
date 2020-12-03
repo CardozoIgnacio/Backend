@@ -1,6 +1,6 @@
 var express = require('express');
 var multer = require("multer");
-var upload = multer({ dest: 'public/carreras/todas/ '});
+var upload = multer({ dest: 'public/carreras/todas/'});
 var controladorCarrera = require('../controller/controladorCarrera')
 var router = express.Router();
 
