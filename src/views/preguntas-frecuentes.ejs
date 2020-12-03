@@ -1,0 +1,71 @@
+<%- include('./archivos/cabecera', { usuario: usuario }) %> 
+
+<style>
+    .box-encabezado {
+        padding: 5px;
+        background-color: #00296b;
+        color: white;
+    }
+</style>
+
+<br>
+
+<section class="seccion">
+  <div class="container">
+    <br>
+    <h4 class="box-encabezado"><b>>></b> Preguntas frecuentes </h4>
+    <br>
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingOne">
+          <h4 class="panel-title">
+            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+              ¿Qué tipo de formación contemplan nuestras ofertas?
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+          <div class="panel-body">
+            <b>Todas las carreras son de formación superior no universitaria de tres años duración, con títulos de validez provincial y alcance nacional.</b>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingTwo">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+              ¿Es gratuita la inscripción y el cursado?
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+          <div class="panel-body">
+            <b>La matriculación y los cursos son totalmente gratuitos. Los alumnos y docentes colaboran con un aporte mínimo a la Asociación Cooperadora, que tiene como principal objetivo mantener el edificio y los equipamientos en condiciones ideales para la realización de las prácticas educativas.</b>
+          </div>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading" role="tab" id="headingThree">
+          <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              ¿Qué condiciones tiene el cursado de una carrera terciaria?
+            </a>
+          </h4>
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+          <div class="panel-body">
+            <b>Las asignaturas de los distintos planes de estudio se dictan en módulos teórico-prácticos anuales con permanente actualización de contenidos. <br>
+            Los alumnos deben aprobar el cursado de los espacios curriculares para acceder al exámen final. <br>
+            El régimen normal de cursado es presencial, con un porcentaje de asistencia a clase mínimo del 60%. <br>
+            Las clases se dictan en un único turno, de Lunes a Viernes, en el horario vespertino de 18:30 a 22:30 hs.</b>
+          </div>
+        </div>
+      </div>
+    </div>    
+  </div>
+</section>
+
+
+<br>
+<br>
+<%- include('./archivos/footer') %> 
