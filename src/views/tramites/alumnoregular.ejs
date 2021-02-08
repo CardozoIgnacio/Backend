@@ -1,5 +1,10 @@
 <%- include('../archivos/cabecera', { usuario: usuario }) %> 
 
+<% 
+let fecha = new Date();
+let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+%>
+
 <section class="seccion">
   <div class="container">
     <% if(usuario.rol != "Estudiante") { %> 
@@ -14,11 +19,11 @@
         <span style="font-size:20px; font-weight:bold; color:black"><u>CONSTANCIA DE ALUMNO REGULAR</u></span>
         <br>
         <br>
-        <span style="font-size:12px; color:black">Se deja constancia que a la fecha: 28 de Noviembre 2020, <b><%= usuario.nombre %> <%= usuario.apellido %>, DNI 25.523.127</b>, es alumno del Instituto Superior de Formación Técnica Nro. 190 de Coronel Rosales, en la carrera <b>Técnico Superior en Análisis de Sistemas, Res.5817/03</b>. 
+        <span style="font-size:12px; color:black">Se deja constancia que a la fecha: <%= fecha.getDate() %> de <%= meses[fecha.getMonth()] %> del <%= fecha.getFullYear() %>, <b><%= usuario.nombre %> <%= usuario.apellido %>, DNI 30.523.127</b>, es alumno del Instituto Superior de Formación Técnica Nro. 190 de Coronel Rosales, en la carrera <b>Técnico Superior en Análisis de Sistemas, Res.5817/03</b>. 
         <br>
         Para ser presentado ante las autoridades de la IOSFA.
         <br>
-        Documento vigente durante el ciclo lectivo 2020.
+        Documento vigente durante el ciclo lectivo <%= fecha.getFullYear() %>.
         <br>
         </span>
         <br>
