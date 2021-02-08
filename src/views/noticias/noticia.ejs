@@ -1,5 +1,10 @@
 <%- include('../archivos/cabecera', { usuario: usuario }) %> 
 
+<% 
+let fecha = new Date();
+let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+%>
+
 <section class="blog_wrapper">
   <div class="container">  
       <div class="row">        
@@ -8,7 +13,7 @@
                   <h3><%= noticia.tituloNoticia %></h3>
                   <div class="post_by d-flex">
                       <span>Publicado por: <a href="#" title="" class="bloger_name">Dirección</a></span>
-                      <span>Fecha: 27 de Noviembre de 2020</span>                        
+                      <span>Fecha: <%= fecha.getDate() %> de <%= meses[fecha.getMonth()] %> del <%= fecha.getFullYear() %></span>                        
                       <span><a href="#" title="">Categoría</a></span>
                   </div>
                   <img src="images/blog/details_1.png" alt="" class="img-fluid">

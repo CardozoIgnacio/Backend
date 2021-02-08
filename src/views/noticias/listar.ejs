@@ -2,17 +2,18 @@
 <br>
 <br>
 
-<style>
+<% 
+let fecha = new Date();
+let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+%>
 
+<style>
 .item{color:#48453d; margin-top:30px; overflow:hidden;}
 .block-title{color: #48453d; margin-bottom:0px; font-size:18px; margin-top: 0px; font-weight:700; text-transform:uppercase;}
 .item-content-block{padding:20px; border-top:2px solid #f6f6f2; background-color:#FFF; display:block;}
 .tags a{background-color:#756f5d; padding:10px; color:#fff; display:inline-block; font-size:14px; text-transform:uppercase; line-height:11px; border-radius:2px; margin-bottom:5px; margin-right:2px; text-decoration:none;}
-.tags a:hover{background-color:#a38018;}
-
-
+.tags a:hover{background-color:darkblue;}
 </style>
-
 
 
 
@@ -47,7 +48,7 @@
                        <div class="blog_title">
                            <ul class="post_bloger">
                                <li><i class="fas fa-user"></i>Administración</li> 
-                               <li><i class="fas fa-clock"></i>19 de Noviembre, 2020</li>
+                               <li><i class="fas fa-clock"></i><%= fecha.getDate() %> de <%= meses[fecha.getMonth()] %>, <%= fecha.getFullYear() %></li>
                                <br>
                                <% if (usuario) { %>
                                 <% if (usuario.rol == "Administrador") { %>
