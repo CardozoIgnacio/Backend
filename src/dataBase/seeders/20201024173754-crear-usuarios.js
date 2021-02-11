@@ -83,7 +83,7 @@ module.exports = {
 		await queryInterface.bulkInsert("Usuario", arryUsuariosEncry, {});
   
 	},
-	// Se ejecuta la momento de "desacer" la siembra
+	// Se ejecuta al momento de "deshacer" la siembra
 	down: async (queryInterface, Sequelize) => {
 		//Al proporcionarle null eliminara todos los usarios
 		//Es posible realizar eliminaciones especificas, en vez de
