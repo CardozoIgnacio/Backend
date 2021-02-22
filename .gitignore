@@ -1,3 +1,5 @@
 node_modules/
 .env
-
+public/carreras
+public/uploads
+src/dataBase/seeders/seederRealizate
