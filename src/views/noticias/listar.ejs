@@ -1,0 +1,82 @@
+<%- include('../archivos/cabecera', { usuario: usuario }) %> 
+<br>
+<br>
+
+<% 
+let fecha = new Date();
+let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+%>
+
+<style>
+.item{color:#48453d; margin-top:30px; overflow:hidden;}
+.block-title{color: #48453d; margin-bottom:0px; font-size:18px; margin-top: 0px; font-weight:700; text-transform:uppercase;}
+.item-content-block{padding:20px; border-top:2px solid #f6f6f2; background-color:#FFF; display:block;}
+.tags a{background-color:#756f5d; padding:10px; color:#fff; display:inline-block; font-size:14px; text-transform:uppercase; line-height:11px; border-radius:2px; margin-bottom:5px; margin-right:2px; text-decoration:none;}
+.tags a:hover{background-color:darkblue;}
+</style>
+
+
+
+<section class="latest_news_2" id="latest_news_style_2">
+    <div class="container">
+        <br>
+        <% if (usuario) { %>
+            <% if (usuario.rol == "Administrador") { %>
+            <center><a href="./crearNoticia" class="btn btn-sm btn-primary">Publicar nueva noticia</a></center>
+            <% } %>
+        <% } %>
+        <div class="item">
+            <div class="item-content-block">
+                <div class="block-title">Categorías</div>
+            </div>
+            <div class="item-content-block tags">
+                <a href="#">I.S.F.T nº 190</a> <a href="#">Mesas de exámen</a> <a href="#">Dirección</a> <a href="#">Análisis de Sistemas</a> <a href="#">Administración de PyMEs</a> <a href="#">Automatización y Control</a> <a href="#">Seguridad e Higiene</a> 
+            </div>
+        </div>
+        <br>        
+        <div class="row">            
+            <% noticias.forEach(noticia => { %>
+              <% if(noticia.visibilidad) { %>
+                <div class="col-12 col-sm-6 col-md-4 col-lg-4">
+                    <div class="single_item">
+                       <div class="item_wrapper">
+                           <div class="blog-img">
+                               <a href="./mostrar/<%= noticia.idNoticia %>" title=""><img src="../public/uploads/<%= noticia.tituloNoticia %>/miniaturas/0.jpg" alt="" class="img-fluid"></a>
+                           </div>
+                           <h3><a href="./mostrar/<%= noticia.idNoticia %>" title=""><%= noticia.tituloNoticia %></a></h3> 
+                       </div>
+                       <div class="blog_title">
+                           <ul class="post_bloger">
+                               <li><i class="fas fa-user"></i>Administración</li> 
+                               <li><i class="fas fa-clock"></i><%= fecha.getDate() %> de <%= meses[fecha.getMonth()] %>, <%= fecha.getFullYear() %></li>
+                               <br>
+                               <% if (usuario) { %>
+                                <% if (usuario.rol == "Administrador") { %>
+                                <li><a href="./<%= noticia.idNoticia %>/actualizar" class="btn btn-sm btn-dark">Actualizar</a></li>
+                                <li><form method="POST" action="./<%= noticia.idNoticia %>/destruir %>"><button type="submit" class="btn btn-sm btn-danger">Eliminar</button></form></li>
+                                <% } %>
+                               <% } %>
+                           </ul>               
+                       </div> 
+                   </div>
+               </div>          
+              <% } %>
+            <% }) %>              
+          </div> 
+
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 blog_wrapper_right ">
+              <div class="blog-right-items">
+                  <div class="twitter_post_wrapper widget_single">
+                      <div class="items-title">
+                          <h3 class="title">Publicaciones de Facebook</h3>
+                      </div>
+                      <p>Acá se podría poner el widget ofrecido por facebook para ver las publicaciones de la página</p>
+                  </div>
+              </div>
+          </div>
+          
+      </div>
+  </div> 
+</section>
+
+<%- include('../archivos/footer') %> 

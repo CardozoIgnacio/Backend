@@ -1,0 +1,152 @@
+<%- include('../archivos/cabecera', { usuario: usuario }) %> 
+
+<style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  #campo {
+    background-image: url('/css/searchicon.png');
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 1px solid #ddd;
+    margin-bottom: 12px;
+  }
+  
+  #tablaUsuarios {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    font-size: 18px;
+  }
+  
+  #tablaUsuarios th, #tablaUsuarios td {
+    text-align: left;
+    padding: 12px;
+  }
+  
+  #tablaUsuarios tr {
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #tablaUsuarios tr.header, #tablaUsuarios tr:hover {
+    background-color: #f1f1f1;
+  }
+</style>
+
+<section class="seccion">
+  <div class="container">
+    <% if(usuario) { %>
+      <% if(usuario.rol != "Administrador") { %> 
+        <center><h3>Usted no dispone de privilegios suficientes para visualizar esta página.</h3></center>
+      <% } else { %>
+        <center>
+          <h3>Listado de alumnos en proceso de inscripción.</h3>
+        </center>
+        <br>
+          <input type="text" id="campo" onkeyup="buscar()" placeholder="Buscar..." title="Ingrese un filtro">
+
+          <table id="tablaUsuarios" class="table-responsive">
+            <tr class="header">
+              <th>Nº Preinscripción</th>
+              <th>Nombre</th>
+              <th>DNI</th>
+              <th>Fecha de nacimiento</th>
+              <th>Correo electrónico</th>
+              <th>Domicilio</th>
+              <th>Número de teléfono</th>
+              <th>Foto carnet</th>
+              <th>Certificado de salud</th>
+              <th>Fotocopia DNI</th>
+              <th>Acciones</th>
+            </tr>
+              <% listado.forEach(alumno => { %>
+                <tr>
+                  <td><%= alumno.nroPreinscripcion %></td>
+                  <td><%= alumno.nombre %> <%= alumno.apellido %></td>
+                  <td><%= alumno.dni %></td>
+                  <td><%= alumno.fechaNac %></td>
+                  <td><%= alumno.email %></td>
+                  <td><%= alumno.direccion %></td>
+                  <td><%= alumno.numTelefono %> </td>
+                  <td>No</td>
+                  <td>No</td>
+                  <td>No</td>
+                  <td><button class="btn btn-sm btn-success"><i class="fas fa-check"></i> Confirmar</button><br><br><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#editar"><i class="fas fa-edit"></i> Editar</button><br><br><button class="btn btn-sm btn-danger"><i class="fas fa-trash"></i> Borrar</button></td>
+                </tr>
+              <% }) %>
+          </table>
+      <% } %>
+    <% } else { %>
+      <center><h3>Usted no dispone de privilegios suficientes para visualizar esta página.</h3></center>
+    <% } %>
+  </div>
+</section>
+
+<div class="modal fade" id="editar" tabindex="-1" role="dialog" aria-labelledby="editar" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarLabel">Editar pre-inscripción</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="certificadoSalud">Entregó certificado de salud?:</label>
+            <select class="form-control" id="certificadoSalud">
+              <option>No</option>
+              <option>Sí</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fotoCarnet">Entregó foto carnet?: </label>
+            <select class="form-control" id="fotoCarnet">
+              <option>No</option>
+              <option>Sí</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="fotocopiaDNI">Entregó fotocopia del DNI?:</label>
+            <select class="form-control" id="fotocopiaDNI">
+              <option>No</option>
+              <option>Sí</option>
+            </select>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Descartar cambios</button>
+        <a href=""><button type="button" class="btn btn-success">Actualizar</button></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+function buscar() {
+  var input, filter, table, tr, td, cell, i, j;
+  input = document.getElementById("campo");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("tablaUsuarios");
+  tr = table.getElementsByTagName("tr");
+  for (i = 1; i < tr.length; i++) {
+    tr[i].style.display = "none";
+    td = tr[i].getElementsByTagName("td");
+    for (var j = 0; j < td.length; j++) {
+      cell = tr[i].getElementsByTagName("td")[j];
+      if (cell) {
+        if (cell.innerHTML.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+          break;
+        } 
+      }
+    }
+  }
+}
+  </script>  
+
+<%- include('../archivos/footer') %> 

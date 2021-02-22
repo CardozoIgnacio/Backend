@@ -1,0 +1,83 @@
+<%- include('../archivos/cabecera', { usuario: usuario }) %> 
+
+<% 
+let fecha = new Date();
+let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+%>
+
+<section class="blog_wrapper">
+  <div class="container">  
+      <div class="row">        
+          <div class="col-12 col-sm-12 col-md-8 col-lg-8">
+              <div class="blog_post">
+                  <h3><%= noticia.tituloNoticia %></h3>
+                  <div class="post_by d-flex">
+                      <span>Publicado por: <a href="#" title="" class="bloger_name">Dirección</a></span>
+                      <span>Fecha: <%= fecha.getDate() %> de <%= meses[fecha.getMonth()] %> del <%= fecha.getFullYear() %></span>                        
+                      <span><a href="#" title="">Categoría</a></span>
+                  </div>
+                  <img src="images/blog/details_1.png" alt="" class="img-fluid">
+                  <div class="postpage_content_wrapper">
+                      <div class="social_wrapper">
+                          <h4>Compartir: </h4>
+                          <ul class="social_items list-unstyled">
+                              <li><a href="#"><i class="fab fa-facebook-f fb_icon"></i></a></li>
+                              <li><a href="#"><i class="fab fa-twitter tw_icon"></i></a></li>
+                              <li><a href="#"><i class="fab fa-linkedin-in link_icon"></i></a></li>
+                              <li><a href="#"><i class="fab fa-instagram in_icon"></i></a></li>
+                          </ul>
+                      </div>
+                      <div class="blog_post_content">
+                        <center><img src="/public/uploads/<%=noticia.tituloNoticia%>/0.jpg" class="img-fluid"></center>
+                        <br>
+                        <%= noticia.cuerpoNoticia %>
+                        <br>
+                        <br>
+                        <h5>Fotos: </h5>
+                        <br>
+                        <% fotos.forEach(function(foto) { %>
+                          <% if(foto != "miniaturas" && foto != "0.jpg") { %>
+                            <img src="/public/uploads/<%=noticia.tituloNoticia%>/<%=foto%>" class="img-fluid">
+                          <% } %>
+                          <br>
+                        <% }) %>
+                      </div>
+                  </div>
+              </div>               
+          </div> <!-- End Blog Left Side-->
+
+          <div class="col-12 col-sm-12 col-md-4 col-lg-4 blog_wrapper_right ">
+              <div class="blog-right-items">
+
+                  <div class="become_a_teacher widget_single">
+                      <div class="form-full-box">
+                          <div class="form_title">
+                              <h2>Inscribirse al newsletter</h2>
+                              <p>Recibí las novedades del instituto en tu e-Mail:</p>
+                          </div>
+                          <form>
+                              <div class="register-form">
+                                  <div class="row">
+                                      <div class="col-12 col-xs-12 col-md-12">
+                                          <div class="form-group">
+                                              <label><i class="flaticon-email"></i></label>
+                                              <input class="form-control" name="email" placeholder="Correo electrónico" required="" type="email">
+                                          </div>
+                                      </div>
+                                      <div class="col-12 col-xs-12 col-md-12 register-btn-box">
+                                          <button class="register-btn" type="submit">Listo</button>
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div><!-- ./ End  Blog Right Side-->
+          
+      </div>
+  </div> 
+</section> <!-- ./ End Blog Area Wrapper-->
+
+
+  <%- include('../archivos/footer') %> 

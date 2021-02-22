@@ -1,0 +1,40 @@
+<%- include('../archivos/cabecera', { usuario: usuario }) %> 
+
+<% 
+let fecha = new Date();
+let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+%>
+
+<section class="seccion">
+  <div class="container">
+    <% if(usuario.rol != "Estudiante") { %> 
+      <center><h3>Usted no dispone de privilegios suficientes para visualizar esta página.</h3></center>
+    <% } else { %>
+      
+    <div style="width:800px; height:600px; padding:20px; text-align:center; border: 10px solid black; margin: 0 auto;">
+      <div style="width:750px; height:550px; padding:20px; text-align:center; border: 5px solid black">
+        <img src="/public/images/instituto/cultura.jpeg" class="img-fluid">
+        <br>
+        <br>
+        <span style="font-size:20px; font-weight:bold; color:black"><u>CONSTANCIA DE ALUMNO REGULAR</u></span>
+        <br>
+        <br>
+        <span style="font-size:12px; color:black">Se deja constancia que a la fecha: <%= fecha.getDate() %> de <%= meses[fecha.getMonth()] %> del <%= fecha.getFullYear() %>, <b><%= usuario.nombre %> <%= usuario.apellido %>, DNI 30.523.127</b>, es alumno del Instituto Superior de Formación Técnica Nro. 190 de Coronel Rosales, en la carrera <b>Técnico Superior en Análisis de Sistemas, Res.5817/03</b>. 
+        <br>
+        Para ser presentado ante las autoridades de la IOSFA.
+        <br>
+        Documento vigente durante el ciclo lectivo <%= fecha.getFullYear() %>.
+        <br>
+        </span>
+        <br>
+        <img src="/public/images/instituto/firma.png" class="float-right">
+        <br>
+        <img src="https://1.bp.blogspot.com/-D8yZSzLgKvI/V0Cj8xIuY_I/AAAAAAAAACw/RuVk2ROaaCojIIJBzWkRuIHDkPjyIBKdQCLcB/s1600/Desktop%2BQR%2BGenerator.jpg" class="float-left img-fluid" width="80" height="80">
+      </div>
+    </div>
+     
+    <% } %>
+  </div>
+</section>
+
+<%- include('../archivos/footer') %> 
