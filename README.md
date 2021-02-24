@@ -1,7 +1,23 @@
-**PROYECTO DE PRÁCTICAS PROFESIONALIZANTES**
+# **PROYECTO DE PRÁCTICAS PROFESIONALIZANTES**
 
 
 
+Tabla de contenidos
+=================
+
+      * [Jerarquías y roles](#jerarquías-y-roles)
+         * [Rol administrativo](#rol-administrativo)
+         * [Rol alumno](#rol-alumno)
+         * [Rol profesor](#rol-profesor)
+      * [Funcionalidades](#funcionalidades)
+         * [Preinscripción](#preinscripción)
+         * [Menú dinámico](#menú-dinámico)
+         * [Encriptación de contraseñas](#encriptación-de-contraseñas)
+      * [Inicialización del workspace](#inicialización-del-workspace)
+      * [Estructura básica del proyecto](#estructura-básica-del-proyecto)
+      * [Flujo de datos](#flujo-de-datos)
+      * [Errores / Incertidumbres](#errores--incertidumbres)
+      * [Posibles implementaciones a futuro](#posibles-implementaciones-a-futuro)
 ## Jerarquías y roles
 
 El manejo de los permisos que pueden tener los usuarios en la página, fueron modelados utilizando una sola tabla con un campo de rol, el cual funciona cómo identificador ( a nivel permisos ) de cada usuario.
@@ -291,20 +307,6 @@ En el informe del proyecto, se detalla de manera más simple el funcionamiento d
 
 
 ![img](https://lh6.googleusercontent.com/XonpELmT7pFgcFZ4WmP_3tPjiOLtwsaNxYRfUfNJTAquZ1VXL5vw5D3H10sBhqwpgGfoZN900tPIvLxBM1b8rlq1he5WhX2FCR2WtnONaLeSQPe_03kKihwCEpKmz-fHC4i9V48J)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 Existen varios motores de plantillas, los cuales difieren en sintaxis. EJS se caracteriza por respetar la estructura y sintaxis HTML, incluyendo código programable que debe ubicarse entre símbolos <% y %>.
 
