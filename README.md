@@ -223,7 +223,15 @@ Una vez descargado se corre el comando:
 
 ![img](https://lh4.googleusercontent.com/hh5lmUuhrfwB5eCTZ5rMcVcb1hx-jqergHclOJSH9B2z8hYhJcsYWPe-8zUmv3zPexw8iPZUG4saWAMQ7zs8dsUXkelI_mAuibTLS9sFdvoiyFSGIylhxUwYWm6PaxGdW_Ri7oYK)
 
-Este comando instalará todos los paquetes necesarios, de la rama donde se encuentren posicionados.
+Este comando instalará todos los paquetes necesarios, de la rama donde se encuentren posicionados. Es importante notar que la versión de node que utilizamos para desarrollar es la la versión 14.15.4 que es la ultima versión LTS. Es posible utilizar versiones 15.x pero puede ocasionar que algunos módulos fallen, por tal motivo recomendamos la utilización de versiones LTS estables. 
+
+Para poder migrar comodamente entre versiones recomendamos el uso de NVM(Node Version Manager)
+
+https://github.com/nvm-sh/nvm
+
+4Para funcionar correctamente es necesario crear dentro de la carpeta un archivo .env el cual se completar con los siguientes datos
+
+**![img](https://lh3.googleusercontent.com/QaBEeNa_5lB_WOEqvRTEt-HeHp-K7PE-zZigAS4FwKzc2I4rcye4ffsYu-ppTIBwe20cj_twRTLnvE77LReXIuQzQAc3gis_IIe0LU6fLxM46uUKpqO4mmMftGD7h5oQALeCDaxK)**
 
 El workflow de git que estuvimos manejando fue:
 
@@ -240,7 +248,7 @@ Para lanzar la aplicación de manera local:
 
 ![img](https://lh6.googleusercontent.com/Fpi8YgFhEHuFlmNPxAXuf8fVl5muRp-2rePlQFxdvFYg9VVyLg--Fj2YeLt4-N4WnT2SoudvN2DVcYybIai5i7noF7wbcEqzExY7CPoEshmS6fMVdy3J47APWq4Gm-XbHg_zNjmJ)
 
-
+**NOTA:**Recordar migrar las tablas por medio del cli de sequelize, y en caso de querer utilizar los datos pre-cargados, también deberán ser realizadas los sembrados correspondientes
 
 Este es un script que se encuentra dentro **package.json**,  la funcionalidad de este script es correr el servidor con un complemento/módulo adicional denominado **nodemon,** el cual re-inicializa el servidor automáticamente cada vez que el espacio de trabajo sufre alguna modificación.
 
